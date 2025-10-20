@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment Gateway - EZERV Solutions India Pvt Ltd</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body class="font-sans text-gray-800">
+<header class="bg-blue-600 text-white shadow">
+  <div class="container mx-auto flex justify-between items-center px-4 sm:px-6 py-4">
+    <div class="flex items-center space-x-2">
+      <img src="assets/logo.png" alt="Logo" class="h-12 w-12 sm:h-16 sm:w-16 rounded-full">
+      <a href="index.html" class="text-lg sm:text-xl font-semibold">EZERV Solutions</a>
+    </div>
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:flex space-x-6">
+      <a href="index.html" class="hover:text-yellow-300">Home</a>
+      <a href="services.html" class="hover:text-yellow-300">Services</a>
+      <a href="projects.html" class="hover:text-yellow-300">Projects</a>
+      <a href="about.html" class="hover:text-yellow-300">About</a>
+      <a href="contact.html" class="hover:text-yellow-300">Contact</a>
+      <a href="payment.html" class="hover:text-yellow-300">Payment</a>
+    </nav>
+    <!-- Mobile Menu Button -->
+    <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+  </div>
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-blue-700">
+    <div class="px-2 pt-2 pb-3 space-y-1">
+      <a href="index.html" class="block px-3 py-2 text-base font-medium text-white hover:bg-blue-800 rounded">Home</a>
+      <a href="services.html" class="block px-3 py-2 text-base font-medium text-white hover:bg-blue-800 rounded">Services</a>
+      <a href="projects.html" class="block px-3 py-2 text-base font-medium text-white hover:bg-blue-800 rounded">Projects</a>
+      <a href="about.html" class="block px-3 py-2 text-base font-medium text-white hover:bg-blue-800 rounded">About</a>
+      <a href="contact.html" class="block px-3 py-2 text-base font-medium text-white hover:bg-blue-800 rounded">Contact</a>
+      <a href="payment.html" class="block px-3 py-2 text-base font-medium text-white hover:bg-blue-800 rounded">Payment</a>
+    </div>
+  </div>
+</header>
+
+<section class="py-12 sm:py-16 container mx-auto px-4 sm:px-6">
+  <h2 class="text-2xl sm:text-3xl font-semibold text-center mb-4 text-blue-700">Secure Payment Gateway</h2>
+  <p class="text-center text-gray-600 mb-8 sm:mb-12">Complete your payment securely through IndusInd Bank</p>
+  
+  <div class="max-w-2xl mx-auto">
+    <!-- Payment Form Card -->
+    <div class="bg-white shadow-lg rounded-xl p-6 sm:p-8 mb-6">
+      <div class="flex items-center justify-center mb-6">
+        <div class="bg-blue-100 p-4 rounded-lg">
+          <i data-feather="credit-card" class="w-12 h-12 text-blue-600"></i>
+        </div>
+      </div>
+      
+      <form id="payment-form" class="space-y-4">
+        <!-- Customer Information -->
+        <div class="border-b pb-4 mb-4">
+          <h3 class="text-lg font-semibold text-gray-800 mb-4">Customer Information</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700">First Name *</label>
+              <input type="text" name="firstName" required class="mt-1 block w-full border-gray-300 rounded-md p-2 border focus:ring-blue-500 focus:border-blue-500" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700">Last Name *</label>
+              <input type="text" name="lastName" required class="mt-1 block w-full border-gray-300 rounded-md p-2 border focus:ring-blue-500 focus:border-blue-500" />
+            </div>
+          </div>
+          <div class="mt-4">
+            <label class="block text-sm font-medium text-gray-700">Email Address *</label>
+            <input type="email" name="email" required class="mt-1 block w-full border-gray-300 rounded-md p-2 border focus:ring-blue-500 focus:border-blue-500" />
+          </div>
+          <div class="mt-4">
+            <label class="block text-sm font-medium text-gray-700">Phone Number *</label>
+            <input type="tel" name="phone" required pattern="[0-9]{10}" placeholder="10-digit mobile number" class="mt-1 block w-full border-gray-300 rounded-md p-2 border focus:ring-blue-500 focus:border-blue-500" />
+          </div>
+        </div>
+
+        <!-- Payment Details -->
+        <div class="border-b pb-4 mb-4">
+          <h3 class="text-lg font-semibold text-gray-800 mb-4">Payment Details</h3>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Amount (INR) *</label>
+            <input type="number" name="amount" required min="1" step="0.01" placeholder="Enter amount" class="mt-1 block w-full border-gray-300 rounded-md p-2 border focus:ring-blue-500 focus:border-blue-500" />
+          </div>
+          <div class="mt-4">
+            <label class="block text-sm font-medium text-gray-700">Payment Description</label>
+            <textarea name="description" rows="3" placeholder="Purpose of payment (optional)" class="mt-1 block w-full border-gray-300 rounded-md p-2 border focus:ring-blue-500 focus:border-blue-500"></textarea>
+          </div>
+        </div>
+
+        <!-- Card Information -->
+        <div class="pb-4">
+          <h3 class="text-lg font-semibold text-gray-800 mb-4">Card Information</h3>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Card Number *</label>
+            <input type="text" name="cardNumber" required pattern="[0-9]{16}" maxlength="16" placeholder="16-digit card number" class="mt-1 block w-full border-gray-300 rounded-md p-2 border focus:ring-blue-500 focus:border-blue-500" />
+          </div>
+          <div class="grid grid-cols-2 gap-4 mt-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700">Expiry Date *</label>
+              <input type="text" name="expiryDate" required placeholder="MM/YY" pattern="(0[1-9]|1[0-2])\/[0-9]{2}" maxlength="5" class="mt-1 block w-full border-gray-300 rounded-md p-2 border focus:ring-blue-500 focus:border-blue-500" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700">CVV *</label>
+              <input type="password" name="cvv" required pattern="[0-9]{3,4}" maxlength="4" placeholder="3 or 4 digits" class="mt-1 block w-full border-gray-300 rounded-md p-2 border focus:ring-blue-500 focus:border-blue-500" />
+            </div>
+          </div>
+          <div class="mt-4">
+            <label class="block text-sm font-medium text-gray-700">Cardholder Name *</label>
+            <input type="text" name="cardholderName" required placeholder="Name as on card" class="mt-1 block w-full border-gray-300 rounded-md p-2 border focus:ring-blue-500 focus:border-blue-500" />
+          </div>
+        </div>
+
+        <!-- Terms and Conditions -->
+        <div class="flex items-start mt-4">
+          <input type="checkbox" id="terms" required class="mt-1 h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" />
+          <label for="terms" class="ml-2 text-sm text-gray-600">
+            I agree to the <a href="#" class="text-blue-600 hover:underline">terms and conditions</a> and authorize EZERV Solutions to process this payment through IndusInd Bank.
+          </label>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="w-full bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 font-semibold mt-6 flex items-center justify-center">
+          <i data-feather="lock" class="w-5 h-5 mr-2"></i>
+          Pay Securely
+        </button>
+      </form>
+    </div>
+
+    <!-- Security Information -->
+    <div class="bg-gray-50 rounded-lg p-6 border border-gray-200">
+      <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+        <i data-feather="shield" class="w-5 h-5 mr-2 text-green-600"></i>
+        Secure Payment
+      </h3>
+      <div class="space-y-3 text-sm text-gray-600">
+        <div class="flex items-start">
+          <i data-feather="check-circle" class="w-5 h-5 mr-2 text-green-600 flex-shrink-0 mt-0.5"></i>
+          <p>All transactions are encrypted and secured by IndusInd Bank</p>
+        </div>
+        <div class="flex items-start">
+          <i data-feather="check-circle" class="w-5 h-5 mr-2 text-green-600 flex-shrink-0 mt-0.5"></i>
+          <p>PCI DSS compliant payment processing</p>
+        </div>
+        <div class="flex items-start">
+          <i data-feather="check-circle" class="w-5 h-5 mr-2 text-green-600 flex-shrink-0 mt-0.5"></i>
+          <p>Your card details are never stored on our servers</p>
+        </div>
+        <div class="flex items-start">
+          <i data-feather="check-circle" class="w-5 h-5 mr-2 text-green-600 flex-shrink-0 mt-0.5"></i>
+          <p>24/7 fraud monitoring and protection</p>
+        </div>
+      </div>
+      <div class="mt-4 pt-4 border-t border-gray-300">
+        <p class="text-xs text-gray-500">
+          Powered by <span class="font-semibold text-blue-600">IndusInd Bank</span> Payment Gateway
+        </p>
+      </div>
+    </div>
+
+    <!-- Support Information -->
+    <div class="mt-6 text-center text-sm text-gray-600">
+      <p>Need help? Contact us at <a href="mailto:contactus@ezervsolutions.com" class="text-blue-600 hover:underline">contactus@ezervsolutions.com</a> or call <a href="tel:+918464811000" class="text-blue-600 hover:underline">+91 8464811000</a></p>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-gray-900 text-gray-400 text-center py-6 mt-10 px-4">
+  <p class="text-sm sm:text-base">© 2025 EZERV Solutions India Pvt Ltd<br class="sm:hidden"> <span class="hidden sm:inline">|</span> contactus@ezervsolutions.com<br class="sm:hidden"> <span class="hidden sm:inline">|</span> +91 8464811000</p>
+</footer>
+
+<script>
+  feather.replace();
+  
+  // Mobile menu toggle
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  
+  mobileMenuButton.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+
+  // Payment form handling
+  const paymentForm = document.getElementById('payment-form');
+  
+  paymentForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Get form data
+    const formData = new FormData(paymentForm);
+    const data = Object.fromEntries(formData);
+    
+    // Basic validation
+    if (!data.firstName || !data.lastName || !data.email || !data.phone || !data.amount || !data.cardNumber || !data.expiryDate || !data.cvv || !data.cardholderName) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+    
+    // Validate card number (basic check)
+    if (data.cardNumber.length !== 16 || !/^\d+$/.test(data.cardNumber)) {
+      alert('Please enter a valid 16-digit card number.');
+      return;
+    }
+    
+    // Validate expiry date
+    if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(data.expiryDate)) {
+      alert('Please enter a valid expiry date in MM/YY format.');
+      return;
+    }
+    
+    // Validate CVV
+    if (!/^\d{3,4}$/.test(data.cvv)) {
+      alert('Please enter a valid CVV (3 or 4 digits).');
+      return;
+    }
+    
+    // Validate phone number
+    if (!/^\d{10}$/.test(data.phone)) {
+      alert('Please enter a valid 10-digit phone number.');
+      return;
+    }
+    
+    // Validate amount
+    if (parseFloat(data.amount) <= 0) {
+      alert('Please enter a valid amount greater than 0.');
+      return;
+    }
+    
+    // Show processing message
+    alert('Processing your payment...\n\nNote: This is a demo payment gateway. In production, this would connect to IndusInd Bank\'s payment API for secure transaction processing.');
+    
+    // In production, you would:
+    // 1. Send encrypted payment data to your backend
+    // 2. Your backend would communicate with IndusInd Bank API
+    // 3. Handle the response and redirect to success/failure page
+    
+    console.log('Payment data (for demo purposes only):', {
+      customer: {
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: data.email,
+        phone: data.phone
+      },
+      payment: {
+        amount: data.amount,
+        description: data.description,
+        cardLast4: data.cardNumber.slice(-4)
+      }
+    });
+    
+    // Simulate success (in production, this would be based on actual API response)
+    setTimeout(() => {
+      alert('Payment Successful!\n\nTransaction ID: ' + Math.random().toString(36).substr(2, 9).toUpperCase() + '\nAmount: ₹' + data.amount + '\n\nA confirmation email has been sent to ' + data.email);
+      paymentForm.reset();
+    }, 2000);
+  });
+  
+  // Format card number input
+  const cardNumberInput = document.querySelector('input[name="cardNumber"]');
+  cardNumberInput.addEventListener('input', function(e) {
+    this.value = this.value.replace(/\D/g, '');
+  });
+  
+  // Format expiry date input
+  const expiryDateInput = document.querySelector('input[name="expiryDate"]');
+  expiryDateInput.addEventListener('input', function(e) {
+    let value = this.value.replace(/\D/g, '');
+    if (value.length >= 2) {
+      value = value.slice(0, 2) + '/' + value.slice(2, 4);
+    }
+    this.value = value;
+  });
+  
+  // Format CVV input
+  const cvvInput = document.querySelector('input[name="cvv"]');
+  cvvInput.addEventListener('input', function(e) {
+    this.value = this.value.replace(/\D/g, '');
+  });
+  
+  // Format phone input
+  const phoneInput = document.querySelector('input[name="phone"]');
+  phoneInput.addEventListener('input', function(e) {
+    this.value = this.value.replace(/\D/g, '');
+  });
+</script>
+</body>
+</html>
