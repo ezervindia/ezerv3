@@ -6,66 +6,49 @@
   <title>EZERV Solutions India Pvt Ltd</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-  <style>
-.menu-toggle {
-  display: none;
-  font-size: 24px;
-  background: none;
-  border: none;
-}
-
-/* Desktop menu */
-nav ul {
-  display: flex;
-  gap: 20px;
-  list-style: none;
-}
-
-/* Mobile view */
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: block; /* show hamburger */
-  }
-  nav ul {
-    display: none; /* hide menu */
-    flex-direction: column;
-    background: white;
-    padding: 10px;
-  }
-  nav ul.show {
-    display: flex; /* show menu when toggled */
-  }
-}
-</style>
-
 </head>
 <body class="font-sans text-gray-800">
 <header class="bg-blue-600 text-white shadow">
-  <div class="container mx-auto flex justify-between items-center px-6 py-4">
+  <div class="container mx-auto flex justify-between items-center px-4 sm:px-6 py-4">
     <div class="flex items-center space-x-2">
-      <img src="assets/logo.png" alt="Logo"  class="h-18 w-20 mr-4 rounded-full">
-      <a href="index.html" class="text-xl font-semibold">EZERV Solutions</a>
+      <img src="assets/logo.png" alt="Logo" class="h-12 w-12 sm:h-16 sm:w-16 rounded-full">
+      <a href="index.html" class="text-lg sm:text-xl font-semibold">EZERV Solutions</a>
     </div>
-    <button class="menu-toggle" aria-label="Toggle Menu">☰</button>
-    <nav class="space-x-6">
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:flex space-x-6">
       <a href="index.html" class="hover:text-yellow-300">Home</a>
       <a href="services.html" class="hover:text-yellow-300">Services</a>
       <a href="projects.html" class="hover:text-yellow-300">Projects</a>
       <a href="about.html" class="hover:text-yellow-300">About</a>
       <a href="contact.html" class="hover:text-yellow-300">Contact</a>
     </nav>
+    <!-- Mobile Menu Button -->
+    <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
     </button>
+  </div>
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-blue-700">
+    <div class="px-2 pt-2 pb-3 space-y-1">
+      <a href="index.html" class="block px-3 py-2 text-base font-medium text-white hover:bg-blue-800 rounded">Home</a>
+      <a href="services.html" class="block px-3 py-2 text-base font-medium text-white hover:bg-blue-800 rounded">Services</a>
+      <a href="projects.html" class="block px-3 py-2 text-base font-medium text-white hover:bg-blue-800 rounded">Projects</a>
+      <a href="about.html" class="block px-3 py-2 text-base font-medium text-white hover:bg-blue-800 rounded">About</a>
+      <a href="contact.html" class="block px-3 py-2 text-base font-medium text-white hover:bg-blue-800 rounded">Contact</a>
+    </div>
   </div>
 </header>
 
-<section class="bg-gray-100 py-20 text-center">
-  <h1 class="text-4xl font-bold text-blue-700 mb-4">Easing Services and Solutions by Leveraging Technology</h1>
-  <p class="text-lg text-gray-600 max-w-2xl mx-auto">We deliver end-to-end IT solutions — from cloud infrastructure to digital branding — that empower your business for the future.</p>
-  <a href="services.html" class="mt-8 inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700">Explore Our Services</a>
+<section class="bg-gray-100 py-12 sm:py-20 text-center px-4">
+  <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-700 mb-4">Easing Services and Solutions by Leveraging Technology</h1>
+  <p class="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto px-4">We deliver end-to-end IT solutions — from cloud infrastructure to digital branding — that empower your business for the future.</p>
+  <a href="services.html" class="mt-6 sm:mt-8 inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700">Explore Our Services</a>
 </section>
-<section class="py-16 container mx-auto px-6">
-  <h2 class="text-3xl font-semibold text-center mb-12">Our Core Offerings</h2>
-  <div class="grid md:grid-cols-3 gap-8">
+<section class="py-12 sm:py-16 container mx-auto px-4 sm:px-6">
+  <h2 class="text-2xl sm:text-3xl font-semibold text-center mb-8 sm:mb-12">Our Core Offerings</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
     <div class="bg-white shadow rounded-xl p-6 text-center">
       <i data-feather="code" class="w-10 h-10 mx-auto text-blue-600"></i>
       <h3 class="mt-4 font-semibold text-lg">Web & App Development</h3>
@@ -84,15 +67,18 @@ nav ul {
   </div>
 </section>
 
-<footer class="bg-gray-900 text-gray-400 text-center py-6 mt-10">
-  <p>© 2025 EZERV Solutions India Pvt Ltd | contactus@ezervsolutions.com | +91 8464811000</p>
+<footer class="bg-gray-900 text-gray-400 text-center py-6 mt-10 px-4">
+  <p class="text-sm sm:text-base">© 2025 EZERV Solutions India Pvt Ltd<br class="sm:hidden"> <span class="hidden sm:inline">|</span> contactus@ezervsolutions.com<br class="sm:hidden"> <span class="hidden sm:inline">|</span> +91 8464811000</p>
 </footer>
-<script>feather.replace();</script>
 <script>
-document.querySelector('.menu-toggle').onclick = function() {
-  document.querySelector('nav ul').classList.toggle('show');
-};
+  feather.replace();
+  // Mobile menu toggle
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  
+  mobileMenuButton.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
 </script>
-
 </body>
 </html>
