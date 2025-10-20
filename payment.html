@@ -93,28 +93,6 @@
           </div>
         </div>
 
-        <!-- Card Information -->
-        <div class="pb-4">
-          <h3 class="text-lg font-semibold text-gray-800 mb-4">Card Information</h3>
-          <div>
-            <label class="block text-sm font-medium text-gray-700">Card Number *</label>
-            <input type="text" name="cardNumber" required pattern="[0-9]{16}" maxlength="16" placeholder="16-digit card number" class="mt-1 block w-full border-gray-300 rounded-md p-2 border focus:ring-blue-500 focus:border-blue-500" />
-          </div>
-          <div class="grid grid-cols-2 gap-4 mt-4">
-            <div>
-              <label class="block text-sm font-medium text-gray-700">Expiry Date *</label>
-              <input type="text" name="expiryDate" required placeholder="MM/YY" pattern="(0[1-9]|1[0-2])\/[0-9]{2}" maxlength="5" class="mt-1 block w-full border-gray-300 rounded-md p-2 border focus:ring-blue-500 focus:border-blue-500" />
-            </div>
-            <div>
-              <label class="block text-sm font-medium text-gray-700">CVV *</label>
-              <input type="password" name="cvv" required pattern="[0-9]{3,4}" maxlength="4" placeholder="3 or 4 digits" class="mt-1 block w-full border-gray-300 rounded-md p-2 border focus:ring-blue-500 focus:border-blue-500" />
-            </div>
-          </div>
-          <div class="mt-4">
-            <label class="block text-sm font-medium text-gray-700">Cardholder Name *</label>
-            <input type="text" name="cardholderName" required placeholder="Name as on card" class="mt-1 block w-full border-gray-300 rounded-md p-2 border focus:ring-blue-500 focus:border-blue-500" />
-          </div>
-        </div>
 
         <!-- Terms and Conditions -->
         <div class="flex items-start mt-4">
@@ -127,7 +105,7 @@
         <!-- Submit Button -->
         <button type="submit" class="w-full bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 font-semibold mt-6 flex items-center justify-center">
           <i data-feather="lock" class="w-5 h-5 mr-2"></i>
-          Pay Securely
+          Proceed to IndusInd Bank Payment Gateway
         </button>
       </form>
     </div>
@@ -196,26 +174,8 @@
     const data = Object.fromEntries(formData);
     
     // Basic validation
-    if (!data.firstName || !data.lastName || !data.email || !data.phone || !data.amount || !data.cardNumber || !data.expiryDate || !data.cvv || !data.cardholderName) {
+    if (!data.firstName || !data.lastName || !data.email || !data.phone || !data.amount) {
       alert('Please fill in all required fields.');
-      return;
-    }
-    
-    // Validate card number (basic check)
-    if (data.cardNumber.length !== 16 || !/^\d+$/.test(data.cardNumber)) {
-      alert('Please enter a valid 16-digit card number.');
-      return;
-    }
-    
-    // Validate expiry date
-    if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(data.expiryDate)) {
-      alert('Please enter a valid expiry date in MM/YY format.');
-      return;
-    }
-    
-    // Validate CVV
-    if (!/^\d{3,4}$/.test(data.cvv)) {
-      alert('Please enter a valid CVV (3 or 4 digits).');
       return;
     }
     
@@ -231,55 +191,49 @@
       return;
     }
     
+    // Prepare payment data for IndusInd Bank
+    const paymentData = {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      phone: data.phone,
+      amount: data.amount,
+      description: data.description || 'Payment to EZERV Solutions',
+      merchantId: 'YOUR_MERCHANT_ID', // Replace with actual IndusInd Bank Merchant ID
+      orderId: 'ORD' + Date.now(), // Generate unique order ID
+      returnUrl: window.location.origin + '/payment-success.html',
+      cancelUrl: window.location.origin + '/payment-cancel.html'
+    };
+    
+    console.log('Redirecting to IndusInd Bank Payment Gateway with data:', paymentData);
+    
     // Show processing message
-    alert('Processing your payment...\n\nNote: This is a demo payment gateway. In production, this would connect to IndusInd Bank\'s payment API for secure transaction processing.');
+    alert('Redirecting to IndusInd Bank Payment Gateway...\n\nYou will be redirected to complete your payment securely.');
     
-    // In production, you would:
-    // 1. Send encrypted payment data to your backend
-    // 2. Your backend would communicate with IndusInd Bank API
-    // 3. Handle the response and redirect to success/failure page
+    // In production, redirect to IndusInd Bank payment gateway
+    // Replace this URL with the actual IndusInd Bank payment gateway URL
+    const indusindGatewayUrl = 'https://www.indusind.com/in/en/personal/payments.html';
     
-    console.log('Payment data (for demo purposes only):', {
-      customer: {
-        firstName: data.firstName,
-        lastName: data.lastName,
-        email: data.email,
-        phone: data.phone
-      },
-      payment: {
-        amount: data.amount,
-        description: data.description,
-        cardLast4: data.cardNumber.slice(-4)
-      }
+    // Create a form to POST data to IndusInd Bank
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = indusindGatewayUrl;
+    
+    // Add form fields
+    Object.keys(paymentData).forEach(key => {
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = key;
+      input.value = paymentData[key];
+      form.appendChild(input);
     });
     
-    // Simulate success (in production, this would be based on actual API response)
+    document.body.appendChild(form);
+    
+    // Submit the form to redirect to IndusInd Bank
     setTimeout(() => {
-      alert('Payment Successful!\n\nTransaction ID: ' + Math.random().toString(36).substr(2, 9).toUpperCase() + '\nAmount: ₹' + data.amount + '\n\nA confirmation email has been sent to ' + data.email);
-      paymentForm.reset();
-    }, 2000);
-  });
-  
-  // Format card number input
-  const cardNumberInput = document.querySelector('input[name="cardNumber"]');
-  cardNumberInput.addEventListener('input', function(e) {
-    this.value = this.value.replace(/\D/g, '');
-  });
-  
-  // Format expiry date input
-  const expiryDateInput = document.querySelector('input[name="expiryDate"]');
-  expiryDateInput.addEventListener('input', function(e) {
-    let value = this.value.replace(/\D/g, '');
-    if (value.length >= 2) {
-      value = value.slice(0, 2) + '/' + value.slice(2, 4);
-    }
-    this.value = value;
-  });
-  
-  // Format CVV input
-  const cvvInput = document.querySelector('input[name="cvv"]');
-  cvvInput.addEventListener('input', function(e) {
-    this.value = this.value.replace(/\D/g, '');
+      form.submit();
+    }, 1000);
   });
   
   // Format phone input
