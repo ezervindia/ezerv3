@@ -43,26 +43,193 @@
   </div>
 </header>
 
+<!-- Hero Section -->
+<section class="bg-gradient-to-r from-blue-600 to-blue-800 py-12 sm:py-16 text-center px-4">
+  <div class="container mx-auto">
+    <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">Get in Touch</h1>
+    <p class="text-lg sm:text-xl text-blue-100 max-w-3xl mx-auto">We'd love to hear from you. Let's discuss how we can help transform your business</p>
+  </div>
+</section>
+
+<!-- Contact Section -->
 <section class="py-12 sm:py-16 container mx-auto px-4 sm:px-6">
-  <h2 class="text-2xl sm:text-3xl font-semibold text-center mb-8 sm:mb-12 text-blue-700">Contact Us</h2>
-  <form action="https://formspree.io/f/xnngrvwl" method="POST" class="max-w-lg mx-auto bg-white shadow rounded-xl p-6 sm:p-8 space-y-4">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
+    <!-- Contact Form -->
     <div>
-      <label class="block text-sm font-medium text-gray-700">Name</label>
-      <input type="text" name="name" required class="mt-1 block w-full border-gray-300 rounded-md p-2 border" />
+      <h2 class="text-2xl sm:text-3xl font-semibold mb-4 text-blue-700">Send Us a Message</h2>
+      <p class="text-gray-600 mb-6">Fill out the form below and we'll get back to you within 24 hours</p>
+      
+      <form action="https://formspree.io/f/xnngrvwl" method="POST" class="bg-white shadow-lg rounded-xl p-6 sm:p-8 space-y-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">First Name *</label>
+            <input type="text" name="firstName" required class="w-full border-gray-300 rounded-md p-3 border focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="John" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Last Name *</label>
+            <input type="text" name="lastName" required class="w-full border-gray-300 rounded-md p-3 border focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Doe" />
+          </div>
+        </div>
+        
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
+          <input type="email" name="_replyto" required class="w-full border-gray-300 rounded-md p-3 border focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="john@example.com" />
+        </div>
+        
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+          <input type="tel" name="phone" class="w-full border-gray-300 rounded-md p-3 border focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="+91 9876543210" />
+        </div>
+        
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Service Interested In</label>
+          <select name="service" class="w-full border-gray-300 rounded-md p-3 border focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+            <option value="">Select a service</option>
+            <option value="web-development">Web & App Development</option>
+            <option value="cloud-infrastructure">Cloud Infrastructure</option>
+            <option value="digital-marketing">Digital Marketing</option>
+            <option value="it-consulting">IT Consulting & Training</option>
+            <option value="cybersecurity">Cybersecurity Solutions</option>
+            <option value="support-maintenance">Support & Maintenance</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Message *</label>
+          <textarea name="message" rows="5" required class="w-full border-gray-300 rounded-md p-3 border focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Tell us about your project or inquiry..."></textarea>
+        </div>
+        
+        <button type="submit" class="w-full bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 font-semibold text-lg transition duration-300 flex items-center justify-center">
+          <i data-feather="send" class="w-5 h-5 mr-2"></i>
+          Send Message
+        </button>
+      </form>
     </div>
+    
+    <!-- Contact Information -->
     <div>
-      <label class="block text-sm font-medium text-gray-700">Email</label>
-      <input type="email" name="_replyto" required class="mt-1 block w-full border-gray-300 rounded-md p-2 border" />
+      <h2 class="text-2xl sm:text-3xl font-semibold mb-4 text-blue-700">Contact Information</h2>
+      <p class="text-gray-600 mb-6">Reach out to us through any of these channels</p>
+      
+      <!-- Contact Cards -->
+      <div class="space-y-4 mb-8">
+        <div class="bg-white shadow-lg rounded-xl p-6 flex items-start space-x-4 hover:shadow-xl transition duration-300">
+          <div class="flex-shrink-0">
+            <div class="bg-blue-100 w-12 h-12 rounded-lg flex items-center justify-center">
+              <i data-feather="mail" class="w-6 h-6 text-blue-600"></i>
+            </div>
+          </div>
+          <div>
+            <h3 class="font-semibold text-gray-800 mb-1">Email Us</h3>
+            <a href="mailto:contactus@ezervsolutions.com" class="text-blue-600 hover:underline">contactus@ezervsolutions.com</a>
+            <p class="text-sm text-gray-500 mt-1">We'll respond within 24 hours</p>
+          </div>
+        </div>
+        
+        <div class="bg-white shadow-lg rounded-xl p-6 flex items-start space-x-4 hover:shadow-xl transition duration-300">
+          <div class="flex-shrink-0">
+            <div class="bg-blue-100 w-12 h-12 rounded-lg flex items-center justify-center">
+              <i data-feather="phone" class="w-6 h-6 text-blue-600"></i>
+            </div>
+          </div>
+          <div>
+            <h3 class="font-semibold text-gray-800 mb-1">Call Us</h3>
+            <a href="tel:+918464811000" class="text-blue-600 hover:underline text-lg">+91 8464811000</a>
+            <p class="text-sm text-gray-500 mt-1">Mon-Fri: 9:00 AM - 6:00 PM IST</p>
+          </div>
+        </div>
+        
+        <div class="bg-white shadow-lg rounded-xl p-6 flex items-start space-x-4 hover:shadow-xl transition duration-300">
+          <div class="flex-shrink-0">
+            <div class="bg-blue-100 w-12 h-12 rounded-lg flex items-center justify-center">
+              <i data-feather="map-pin" class="w-6 h-6 text-blue-600"></i>
+            </div>
+          </div>
+          <div>
+            <h3 class="font-semibold text-gray-800 mb-1">Visit Us</h3>
+            <p class="text-gray-600">EZERV Solutions India Pvt Ltd</p>
+            <p class="text-gray-600">Bangalore, Karnataka, India</p>
+            <p class="text-sm text-gray-500 mt-1">By appointment only</p>
+          </div>
+        </div>
+        
+        <div class="bg-white shadow-lg rounded-xl p-6 flex items-start space-x-4 hover:shadow-xl transition duration-300">
+          <div class="flex-shrink-0">
+            <div class="bg-blue-100 w-12 h-12 rounded-lg flex items-center justify-center">
+              <i data-feather="clock" class="w-6 h-6 text-blue-600"></i>
+            </div>
+          </div>
+          <div>
+            <h3 class="font-semibold text-gray-800 mb-1">Business Hours</h3>
+            <p class="text-gray-600">Monday - Friday: 9:00 AM - 6:00 PM</p>
+            <p class="text-gray-600">Saturday: 10:00 AM - 2:00 PM</p>
+            <p class="text-gray-600">Sunday: Closed</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Social Media Links -->
+      <div class="bg-gray-50 rounded-xl p-6">
+        <h3 class="font-semibold text-gray-800 mb-4">Connect With Us</h3>
+        <div class="flex space-x-4">
+          <a href="#" class="bg-blue-600 w-10 h-10 rounded-full flex items-center justify-center text-white hover:bg-blue-700 transition duration-300">
+            <i data-feather="linkedin" class="w-5 h-5"></i>
+          </a>
+          <a href="#" class="bg-blue-400 w-10 h-10 rounded-full flex items-center justify-center text-white hover:bg-blue-500 transition duration-300">
+            <i data-feather="twitter" class="w-5 h-5"></i>
+          </a>
+          <a href="#" class="bg-blue-800 w-10 h-10 rounded-full flex items-center justify-center text-white hover:bg-blue-900 transition duration-300">
+            <i data-feather="facebook" class="w-5 h-5"></i>
+          </a>
+          <a href="#" class="bg-pink-600 w-10 h-10 rounded-full flex items-center justify-center text-white hover:bg-pink-700 transition duration-300">
+            <i data-feather="instagram" class="w-5 h-5"></i>
+          </a>
+        </div>
+      </div>
     </div>
-    <div>
-      <label class="block text-sm font-medium text-gray-700">Message</label>
-      <textarea name="message" rows="4" required class="mt-1 block w-full border-gray-300 rounded-md p-2 border"></textarea>
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="py-12 sm:py-16 bg-gray-50">
+  <div class="container mx-auto px-4 sm:px-6">
+    <h2 class="text-2xl sm:text-3xl font-semibold text-center mb-4 text-blue-700">Frequently Asked Questions</h2>
+    <p class="text-center text-gray-600 mb-8 sm:mb-12 max-w-2xl mx-auto">Quick answers to common questions about our services</p>
+    
+    <div class="max-w-3xl mx-auto space-y-4">
+      <div class="bg-white shadow rounded-xl p-6">
+        <h3 class="font-semibold text-gray-800 mb-2 flex items-center">
+          <i data-feather="help-circle" class="w-5 h-5 text-blue-600 mr-2"></i>
+          What services do you offer?
+        </h3>
+        <p class="text-gray-600 ml-7">We offer comprehensive IT solutions including web & app development, cloud infrastructure, digital marketing, IT consulting, cybersecurity, and 24/7 support & maintenance services.</p>
+      </div>
+      
+      <div class="bg-white shadow rounded-xl p-6">
+        <h3 class="font-semibold text-gray-800 mb-2 flex items-center">
+          <i data-feather="help-circle" class="w-5 h-5 text-blue-600 mr-2"></i>
+          How long does a typical project take?
+        </h3>
+        <p class="text-gray-600 ml-7">Project timelines vary based on scope and complexity. A simple website might take 2-4 weeks, while enterprise solutions can take 3-6 months. We'll provide a detailed timeline during our initial consultation.</p>
+      </div>
+      
+      <div class="bg-white shadow rounded-xl p-6">
+        <h3 class="font-semibold text-gray-800 mb-2 flex items-center">
+          <i data-feather="help-circle" class="w-5 h-5 text-blue-600 mr-2"></i>
+          Do you provide post-launch support?
+        </h3>
+        <p class="text-gray-600 ml-7">Yes! We offer comprehensive post-launch support and maintenance packages to ensure your systems run smoothly. Our 24/7 support team is always ready to assist you.</p>
+      </div>
+      
+      <div class="bg-white shadow rounded-xl p-6">
+        <h3 class="font-semibold text-gray-800 mb-2 flex items-center">
+          <i data-feather="help-circle" class="w-5 h-5 text-blue-600 mr-2"></i>
+          What industries do you work with?
+        </h3>
+        <p class="text-gray-600 ml-7">We work with clients across various industries including logistics, e-commerce, fintech, healthcare, education, and more. Our solutions are tailored to meet specific industry needs.</p>
+      </div>
     </div>
-    <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700">Send Message</button>
-  </form>
-  <div class="text-center mt-8 text-gray-600 px-4">
-    <p class="text-sm sm:text-base">📧 contactus@ezervsolutions.com</p>
-    <p class="text-sm sm:text-base">📞 +91 8464811000</p>
   </div>
 </section>
 
