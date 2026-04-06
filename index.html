@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EZERV Solutions India Pvt Ltd</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body class="font-sans text-gray-800">
+<header class="bg-blue-600 text-white shadow">
+  <div class="container mx-auto flex justify-between items-center px-4 sm:px-6 py-4">
+    <div class="flex items-center space-x-2">
+      <img src="assets/logo.png" alt="Logo" class="h-10 w-10 sm:h-12 sm:w-12 rounded-full">
+      <a href="index.html" class="text-lg sm:text-xl font-semibold">EZERV Solutions</a>
+    </div>
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:flex space-x-6">
+      <a href="index.html" class="hover:text-yellow-300">Home</a>
+      <a href="services.html" class="hover:text-yellow-300">Services</a>
+      <a href="projects.html" class="hover:text-yellow-300">Projects</a>
+      <a href="about.html" class="hover:text-yellow-300">About</a>
+      <a href="blogs.html" class="hover:text-yellow-300">Blog</a>
+      <a href="contact.html" class="hover:text-yellow-300">Contact</a>
+      <a href="payment.html" class="hover:text-yellow-300">Payment</a>
+      <a href="free-trial.html" class="hover:text-yellow-300 bg-yellow-400 text-blue-800 px-3 py-1 rounded-lg font-semibold">Free Trial</a>
+    </nav>
+    <!-- Mobile Menu Button -->
+    <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+  </div>
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-blue-700">
+    <div class="px-2 pt-2 pb-3 space-y-1">
+      <a href="index.html" class="block px-3 py-2 text-base font-medium text-white hover:bg-blue-800 rounded">Home</a>
+      <a href="services.html" class="block px-3 py-2 text-base font-medium text-white hover:bg-blue-800 rounded">Services</a>
+      <a href="projects.html" class="block px-3 py-2 text-base font-medium text-white hover:bg-blue-800 rounded">Projects</a>
+      <a href="about.html" class="block px-3 py-2 text-base font-medium text-white hover:bg-blue-800 rounded">About</a>
+      <a href="blogs.html" class="block px-3 py-2 text-base font-medium text-white hover:bg-blue-800 rounded">Blog</a>
+      <a href="contact.html" class="block px-3 py-2 text-base font-medium text-white hover:bg-blue-800 rounded">Contact</a>
+      <a href="payment.html" class="block px-3 py-2 text-base font-medium text-white hover:bg-blue-800 rounded">Payment</a>
+      <a href="free-trial.html" class="block px-3 py-2 text-base font-medium text-yellow-300 hover:bg-blue-800 rounded font-semibold">Free Trial</a>
+    </div>
+  </div>
+</header>
+
+<!-- Hero Section -->
+<section class="bg-gradient-to-r from-blue-600 to-blue-800 py-16 sm:py-24 text-center px-4">
+  <div class="container mx-auto">
+    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">Easing Services and Solutions<br class="hidden sm:block">by Leveraging Technology</h1>
+    <p class="text-lg sm:text-xl text-blue-100 max-w-3xl mx-auto px-4 mb-8">We deliver end-to-end IT solutions — from cloud infrastructure to digital branding — that empower your business for the future. Transform your vision into reality with our expert team.</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+      <a href="services.html" class="bg-white text-blue-600 px-8 py-4 rounded-lg hover:bg-gray-100 font-semibold text-lg shadow-lg transition duration-300">Explore Our Services</a>
+      <a href="contact.html" class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg hover:bg-white hover:text-blue-600 font-semibold text-lg transition duration-300">Get in Touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- Statistics Section -->
+<section class="py-12 bg-white">
+  <div class="container mx-auto px-4 sm:px-6">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+      <div class="text-center">
+        <div class="text-3xl sm:text-4xl font-bold text-blue-600 mb-2">50+</div>
+        <div class="text-gray-600 text-sm sm:text-base">Projects Delivered</div>
+      </div>
+      <div class="text-center">
+        <div class="text-3xl sm:text-4xl font-bold text-blue-600 mb-2">30+</div>
+        <div class="text-gray-600 text-sm sm:text-base">Happy Clients</div>
+      </div>
+      <div class="text-center">
+        <div class="text-3xl sm:text-4xl font-bold text-blue-600 mb-2">5+</div>
+        <div class="text-gray-600 text-sm sm:text-base">Years Experience</div>
+      </div>
+      <div class="text-center">
+        <div class="text-3xl sm:text-4xl font-bold text-blue-600 mb-2">99%</div>
+        <div class="text-gray-600 text-sm sm:text-base">Client Satisfaction</div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Core Offerings Section -->
+<section class="py-12 sm:py-16 bg-gray-50">
+  <div class="container mx-auto px-4 sm:px-6">
+    <h2 class="text-2xl sm:text-3xl font-semibold text-center mb-4 text-blue-700">Our Core Offerings</h2>
+    <p class="text-center text-gray-600 mb-8 sm:mb-12 max-w-2xl mx-auto">Comprehensive technology solutions tailored to meet your business needs and drive growth</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+      <div class="bg-white shadow-lg rounded-xl p-6 text-center hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
+        <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+          <i data-feather="code" class="w-8 h-8 text-blue-600"></i>
+        </div>
+        <h3 class="mt-4 font-semibold text-xl text-gray-800">Web & App Development</h3>
+        <p class="text-gray-600 mt-3 leading-relaxed">Modern, scalable, and secure applications built for performance. From responsive websites to enterprise mobile apps.</p>
+      </div>
+      <div class="bg-white shadow-lg rounded-xl p-6 text-center hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
+        <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+          <i data-feather="cloud" class="w-8 h-8 text-blue-600"></i>
+        </div>
+        <h3 class="mt-4 font-semibold text-xl text-gray-800">Cloud Infrastructure</h3>
+        <p class="text-gray-600 mt-3 leading-relaxed">Cloud migration, DevOps, and hosting solutions tailored for business agility. AWS, Azure, and GCP expertise.</p>
+      </div>
+      <div class="bg-white shadow-lg rounded-xl p-6 text-center hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
+        <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+          <i data-feather="users" class="w-8 h-8 text-blue-600"></i>
+        </div>
+        <h3 class="mt-4 font-semibold text-xl text-gray-800">IT Consulting & Training</h3>
+        <p class="text-gray-600 mt-3 leading-relaxed">Expert advice and professional upskilling for digital transformation. Empower your team with cutting-edge skills.</p>
+      </div>
+      <div class="bg-white shadow-lg rounded-xl p-6 text-center hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
+        <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+          <i data-feather="database" class="w-8 h-8 text-blue-600"></i>
+        </div>
+        <h3 class="mt-4 font-semibold text-xl text-gray-800">Software Support & Maintenance</h3>
+        <p class="text-gray-600 mt-3 leading-relaxed">24/7 support and maintenance services ensuring your systems run smoothly and efficiently at all times.</p>
+      </div>
+      <div class="bg-white shadow-lg rounded-xl p-6 text-center hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
+        <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+          <i data-feather="trending-up" class="w-8 h-8 text-blue-600"></i>
+        </div>
+        <h3 class="mt-4 font-semibold text-xl text-gray-800">Digital Marketing</h3>
+        <p class="text-gray-600 mt-3 leading-relaxed">Boost your online presence with SEO, social media marketing, and comprehensive digital branding strategies.</p>
+      </div>
+      <div class="bg-white shadow-lg rounded-xl p-6 text-center hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
+        <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+          <i data-feather="shield" class="w-8 h-8 text-blue-600"></i>
+        </div>
+        <h3 class="mt-4 font-semibold text-xl text-gray-800">Cybersecurity Solutions</h3>
+        <p class="text-gray-600 mt-3 leading-relaxed">Protect your business with advanced security measures, vulnerability assessments, and compliance solutions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Why Choose Us Section -->
+<section class="py-12 sm:py-16 bg-white">
+  <div class="container mx-auto px-4 sm:px-6">
+    <h2 class="text-2xl sm:text-3xl font-semibold text-center mb-4 text-blue-700">Why Choose EZERV Solutions?</h2>
+    <p class="text-center text-gray-600 mb-8 sm:mb-12 max-w-2xl mx-auto">We combine technical expertise with business acumen to deliver solutions that truly make a difference</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-5xl mx-auto">
+      <div class="flex items-start space-x-4">
+        <div class="flex-shrink-0">
+          <div class="bg-blue-100 w-12 h-12 rounded-lg flex items-center justify-center">
+            <i data-feather="check-circle" class="w-6 h-6 text-blue-600"></i>
+          </div>
+        </div>
+        <div>
+          <h3 class="font-semibold text-lg text-gray-800 mb-2">Proven Track Record</h3>
+          <p class="text-gray-600">Successfully delivered 50+ projects across various industries with exceptional client satisfaction.</p>
+        </div>
+      </div>
+      <div class="flex items-start space-x-4">
+        <div class="flex-shrink-0">
+          <div class="bg-blue-100 w-12 h-12 rounded-lg flex items-center justify-center">
+            <i data-feather="zap" class="w-6 h-6 text-blue-600"></i>
+          </div>
+        </div>
+        <div>
+          <h3 class="font-semibold text-lg text-gray-800 mb-2">Cutting-Edge Technology</h3>
+          <p class="text-gray-600">We leverage the latest technologies and frameworks to build future-ready solutions.</p>
+        </div>
+      </div>
+      <div class="flex items-start space-x-4">
+        <div class="flex-shrink-0">
+          <div class="bg-blue-100 w-12 h-12 rounded-lg flex items-center justify-center">
+            <i data-feather="clock" class="w-6 h-6 text-blue-600"></i>
+          </div>
+        </div>
+        <div>
+          <h3 class="font-semibold text-lg text-gray-800 mb-2">Timely Delivery</h3>
+          <p class="text-gray-600">We understand deadlines matter. Our agile approach ensures on-time project completion.</p>
+        </div>
+      </div>
+      <div class="flex items-start space-x-4">
+        <div class="flex-shrink-0">
+          <div class="bg-blue-100 w-12 h-12 rounded-lg flex items-center justify-center">
+            <i data-feather="headphones" class="w-6 h-6 text-blue-600"></i>
+          </div>
+        </div>
+        <div>
+          <h3 class="font-semibold text-lg text-gray-800 mb-2">24/7 Support</h3>
+          <p class="text-gray-600">Round-the-clock support and maintenance to keep your systems running smoothly.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-12 sm:py-16 bg-blue-600 text-white">
+  <div class="container mx-auto px-4 sm:px-6 text-center">
+    <h2 class="text-2xl sm:text-3xl font-semibold mb-4">Ready to Transform Your Business?</h2>
+    <p class="text-lg text-blue-100 mb-8 max-w-2xl mx-auto">Let's discuss how we can help you achieve your technology goals. Get in touch with our team today.</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+      <a href="contact.html" class="bg-white text-blue-600 px-8 py-4 rounded-lg hover:bg-gray-100 font-semibold text-lg shadow-lg transition duration-300">Contact Us Now</a>
+      <a href="projects.html" class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg hover:bg-white hover:text-blue-600 font-semibold text-lg transition duration-300">View Our Work</a>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-gray-900 text-gray-400 text-center py-6 mt-10 px-4">
+  <p class="text-sm sm:text-base">© 2025 EZERV Solutions India Pvt Ltd<br class="sm:hidden"> <span class="hidden sm:inline">|</span> contactus@ezervsolutions.com<br class="sm:hidden"> <span class="hidden sm:inline">|</span> +91 8464811000</p>
+</footer>
+<script>
+  feather.replace();
+  // Mobile menu toggle
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  
+  mobileMenuButton.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+</script>
+</body>
+</html>
