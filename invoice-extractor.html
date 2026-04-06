@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Invoice Extractor - Free Trial | EZERV Solutions</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body class="font-sans text-gray-800">
+<header class="bg-blue-600 text-white shadow">
+  <div class="container mx-auto flex justify-between items-center px-4 sm:px-6 py-4">
+    <div class="flex items-center space-x-2">
+      <img src="assets/logo.png" alt="Logo" class="h-10 w-10 sm:h-12 sm:w-12 rounded-full">
+      <a href="index.html" class="text-lg sm:text-xl font-semibold">EZERV Solutions</a>
+    </div>
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:flex space-x-6">
+      <a href="index.html" class="hover:text-yellow-300">Home</a>
+      <a href="services.html" class="hover:text-yellow-300">Services</a>
+      <a href="projects.html" class="hover:text-yellow-300">Projects</a>
+      <a href="about.html" class="hover:text-yellow-300">About</a>
+      <a href="blogs.html" class="hover:text-yellow-300">Blog</a>
+      <a href="contact.html" class="hover:text-yellow-300">Contact</a>
+      <a href="payment.html" class="hover:text-yellow-300">Payment</a>
+      <a href="free-trial.html" class="hover:text-yellow-300 bg-yellow-400 text-blue-800 px-3 py-1 rounded-lg font-semibold">Free Trial</a>
+    </nav>
+    <!-- Mobile Menu Button -->
+    <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+  </div>
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-blue-700">
+    <div class="px-2 pt-2 pb-3 space-y-1">
+      <a href="index.html" class="block px-3 py-2 text-base font-medium text-white hover:bg-blue-800 rounded">Home</a>
+      <a href="services.html" class="block px-3 py-2 text-base font-medium text-white hover:bg-blue-800 rounded">Services</a>
+      <a href="projects.html" class="block px-3 py-2 text-base font-medium text-white hover:bg-blue-800 rounded">Projects</a>
+      <a href="about.html" class="block px-3 py-2 text-base font-medium text-white hover:bg-blue-800 rounded">About</a>
+      <a href="blogs.html" class="block px-3 py-2 text-base font-medium text-white hover:bg-blue-800 rounded">Blog</a>
+      <a href="contact.html" class="block px-3 py-2 text-base font-medium text-white hover:bg-blue-800 rounded">Contact</a>
+      <a href="payment.html" class="block px-3 py-2 text-base font-medium text-white hover:bg-blue-800 rounded">Payment</a>
+      <a href="free-trial.html" class="block px-3 py-2 text-base font-medium text-yellow-300 hover:bg-blue-800 rounded font-semibold">Free Trial</a>
+    </div>
+  </div>
+</header>
+
+<!-- Hero Section -->
+<section class="bg-gradient-to-r from-blue-600 to-blue-800 py-12 sm:py-16 text-center px-4">
+  <div class="container mx-auto">
+    <div class="inline-block bg-yellow-400 text-blue-800 text-sm font-bold px-4 py-1 rounded-full mb-4">FREE TRIAL</div>
+    <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">AI Invoice Extractor</h1>
+    <p class="text-lg sm:text-xl text-blue-100 max-w-3xl mx-auto">Upload any invoice image or PDF and our AI instantly extracts all key data — vendor info, line items, totals, and more. Export to Excel in one click.</p>
+  </div>
+</section>
+
+<!-- How It Works -->
+<section class="py-10 sm:py-12 bg-gray-50">
+  <div class="container mx-auto px-4 sm:px-6">
+    <h2 class="text-2xl sm:text-3xl font-semibold text-center mb-8 text-blue-700">How It Works</h2>
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div class="text-center">
+        <div class="flex items-center justify-center w-14 h-14 bg-blue-600 rounded-full mx-auto mb-3">
+          <span class="text-white text-xl font-bold">1</span>
+        </div>
+        <h3 class="font-bold text-gray-800 mb-1">Upload Invoice</h3>
+        <p class="text-gray-600 text-sm">Upload a JPG, PNG, or PDF invoice file</p>
+      </div>
+      <div class="text-center">
+        <div class="flex items-center justify-center w-14 h-14 bg-blue-600 rounded-full mx-auto mb-3">
+          <span class="text-white text-xl font-bold">2</span>
+        </div>
+        <h3 class="font-bold text-gray-800 mb-1">Enter Trial Key</h3>
+        <p class="text-gray-600 text-sm">Use the trial key provided below to authenticate</p>
+      </div>
+      <div class="text-center">
+        <div class="flex items-center justify-center w-14 h-14 bg-blue-600 rounded-full mx-auto mb-3">
+          <span class="text-white text-xl font-bold">3</span>
+        </div>
+        <h3 class="font-bold text-gray-800 mb-1">AI Extracts Data</h3>
+        <p class="text-gray-600 text-sm">Our AI reads and extracts all invoice information</p>
+      </div>
+      <div class="text-center">
+        <div class="flex items-center justify-center w-14 h-14 bg-blue-600 rounded-full mx-auto mb-3">
+          <span class="text-white text-xl font-bold">4</span>
+        </div>
+        <h3 class="font-bold text-gray-800 mb-1">Download Excel</h3>
+        <p class="text-gray-600 text-sm">Export the structured data to a clean Excel file</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Trial Key Info -->
+<section class="py-8 container mx-auto px-4 sm:px-6">
+  <div class="max-w-2xl mx-auto bg-yellow-50 border border-yellow-300 rounded-xl p-6 text-center">
+    <div class="flex items-center justify-center mb-3">
+      <i data-feather="key" class="text-yellow-600 w-6 h-6 mr-2"></i>
+      <h3 class="text-lg font-bold text-yellow-800">Your Free Trial Access Key</h3>
+    </div>
+    <p class="text-gray-700 mb-3">Use this key in the invoice extractor to try the service. This key is for trial purposes with limited usage.</p>
+    <div class="bg-white border-2 border-dashed border-yellow-400 rounded-lg px-6 py-3 inline-block">
+      <code id="trial-key" class="text-lg font-mono font-bold text-blue-700 select-all">YOUR_TRIAL_API_KEY_HERE</code>
+    </div>
+    <button onclick="copyKey()" class="ml-3 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 text-sm font-semibold transition duration-300">
+      Copy Key
+    </button>
+    <p class="text-sm text-gray-500 mt-3">Provider: <strong>Groq</strong> | Select "Groq" as the AI provider when using the tool</p>
+  </div>
+</section>
+
+<!-- Embedded Invoice Extractor App -->
+<section class="py-8 sm:py-12 container mx-auto px-4 sm:px-6">
+  <h2 class="text-2xl sm:text-3xl font-semibold text-center mb-4 text-blue-700">Try Invoice Extractor Now</h2>
+  <p class="text-center text-gray-600 mb-6 max-w-2xl mx-auto">The tool is loaded below. Upload your invoice and experience AI-powered data extraction.</p>
+
+  <div class="max-w-6xl mx-auto bg-white shadow-xl rounded-xl overflow-hidden border border-gray-200">
+    <!-- ============================================================ -->
+    <!-- IMPORTANT: Replace the src URL below with your deployed       -->
+    <!-- Flask app URL (e.g., https://invoice-extractor.onrender.com) -->
+    <!-- ============================================================ -->
+    <iframe
+      id="invoice-app"
+      src="https://YOUR-DEPLOYED-APP-URL.onrender.com"
+      class="w-full border-0"
+      style="height: 800px; min-height: 600px;"
+      title="Invoice Extractor Tool"
+      loading="lazy"
+      allow="clipboard-write"
+    ></iframe>
+
+    <!-- Fallback if iframe doesn't load -->
+    <div id="iframe-fallback" class="hidden text-center py-16 px-6">
+      <i data-feather="alert-circle" class="w-12 h-12 text-gray-400 mx-auto mb-4"></i>
+      <h3 class="text-xl font-bold text-gray-700 mb-2">Tool is Loading...</h3>
+      <p class="text-gray-500 mb-4">If the tool doesn't load, it may be starting up (takes ~30 seconds on free hosting). Please wait and try again.</p>
+      <button onclick="reloadApp()" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 font-semibold transition duration-300">
+        Reload Tool
+      </button>
+      <p class="text-sm text-gray-400 mt-4">Or access it directly: <a id="direct-link" href="https://YOUR-DEPLOYED-APP-URL.onrender.com" target="_blank" class="text-blue-600 underline">Open in New Tab</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-10 sm:py-12 bg-gray-50">
+  <div class="container mx-auto px-4 sm:px-6">
+    <h2 class="text-2xl sm:text-3xl font-semibold text-center mb-8 text-blue-700">What Gets Extracted</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="bg-white rounded-xl p-5 shadow-md text-center">
+        <i data-feather="file-text" class="w-8 h-8 text-blue-600 mx-auto mb-3"></i>
+        <h3 class="font-bold text-gray-800 mb-1">Invoice Details</h3>
+        <p class="text-gray-600 text-sm">Invoice number, date, due date, PO number</p>
+      </div>
+      <div class="bg-white rounded-xl p-5 shadow-md text-center">
+        <i data-feather="users" class="w-8 h-8 text-blue-600 mx-auto mb-3"></i>
+        <h3 class="font-bold text-gray-800 mb-1">Vendor & Client Info</h3>
+        <p class="text-gray-600 text-sm">Names, addresses, emails, phone, tax IDs</p>
+      </div>
+      <div class="bg-white rounded-xl p-5 shadow-md text-center">
+        <i data-feather="list" class="w-8 h-8 text-blue-600 mx-auto mb-3"></i>
+        <h3 class="font-bold text-gray-800 mb-1">Line Items</h3>
+        <p class="text-gray-600 text-sm">Descriptions, quantities, unit prices, totals</p>
+      </div>
+      <div class="bg-white rounded-xl p-5 shadow-md text-center">
+        <i data-feather="dollar-sign" class="w-8 h-8 text-blue-600 mx-auto mb-3"></i>
+        <h3 class="font-bold text-gray-800 mb-1">Financials</h3>
+        <p class="text-gray-600 text-sm">Subtotal, tax, discounts, shipping, total amount</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-12 sm:py-16 bg-blue-600 text-white">
+  <div class="container mx-auto px-4 sm:px-6 text-center">
+    <h2 class="text-2xl sm:text-3xl font-semibold mb-4">Want This for Your Business?</h2>
+    <p class="text-lg text-blue-100 mb-8 max-w-2xl mx-auto">We can build custom invoice processing solutions, integrate with your existing systems, or deploy a dedicated instance for your team.</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+      <a href="contact.html" class="bg-white text-blue-600 px-8 py-4 rounded-lg hover:bg-gray-100 font-semibold text-lg shadow-lg transition duration-300">Get a Custom Solution</a>
+      <a href="free-trial.html" class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg hover:bg-white hover:text-blue-600 font-semibold text-lg transition duration-300">More Free Trials</a>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-gray-900 text-gray-400 text-center py-6 mt-10 px-4">
+  <p class="text-sm sm:text-base">© 2025 EZERV Solutions India Pvt Ltd<br class="sm:hidden"> <span class="hidden sm:inline">|</span> contactus@ezervsolutions.com<br class="sm:hidden"> <span class="hidden sm:inline">|</span> +91 8464811000</p>
+</footer>
+<script>
+  feather.replace();
+
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  mobileMenuButton.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+
+  function copyKey() {
+    const key = document.getElementById('trial-key').textContent;
+    navigator.clipboard.writeText(key).then(() => {
+      const btn = event.target;
+      btn.textContent = 'Copied!';
+      setTimeout(() => { btn.textContent = 'Copy Key'; }, 2000);
+    });
+  }
+
+  function reloadApp() {
+    const iframe = document.getElementById('invoice-app');
+    iframe.src = iframe.src;
+    document.getElementById('iframe-fallback').classList.add('hidden');
+    iframe.classList.remove('hidden');
+  }
+
+  // Show fallback if iframe fails to load after 15 seconds
+  setTimeout(() => {
+    const iframe = document.getElementById('invoice-app');
+    try {
+      // If iframe src is still a placeholder, show fallback
+      if (iframe.src.includes('YOUR-DEPLOYED-APP-URL')) {
+        iframe.classList.add('hidden');
+        document.getElementById('iframe-fallback').classList.remove('hidden');
+      }
+    } catch(e) {}
+  }, 15000);
+</script>
+</body>
+</html>
