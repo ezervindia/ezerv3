@@ -6,6 +6,23 @@
   <title>Invoice Extractor - Free Trial | EZERV Solutions</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+  <!-- PDF.js for client-side PDF to image -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <!-- SheetJS for client-side Excel generation -->
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
+  <style>
+    .drop-zone{transition:all .2s}
+    .drop-zone:hover,.drop-zone.dragover{border-color:#2563eb;background:#eff6ff}
+    .spinner-sm{width:18px;height:18px;border:2px solid #ddd;border-top-color:#2563eb;border-radius:50%;animation:spin .7s linear infinite;display:inline-block}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .result-field{display:flex;justify-content:space-between;padding:8px 12px;border-bottom:1px solid #f0f0f0}
+    .result-field:last-child{border-bottom:none}
+    .result-field .label{color:#6b7280;font-size:13px;font-weight:500}
+    .result-field .value{color:#111827;font-size:13px;font-weight:600;text-align:right;max-width:60%}
+    .page-thumb{cursor:pointer;transition:all .2s}
+    .page-thumb:hover{transform:translateY(-2px)}
+    .page-thumb.selected{border-color:#10b981!important;box-shadow:0 0 0 2px #10b981}
+  </style>
 </head>
 <body class="font-sans text-gray-800">
 <header class="bg-blue-600 text-white shadow">
@@ -14,7 +31,6 @@
       <img src="assets/logo.png" alt="Logo" class="h-10 w-10 sm:h-12 sm:w-12 rounded-full">
       <a href="index.html" class="text-lg sm:text-xl font-semibold">EZERV Solutions</a>
     </div>
-    <!-- Desktop Navigation -->
     <nav class="hidden md:flex space-x-6">
       <a href="index.html" class="hover:text-yellow-300">Home</a>
       <a href="services.html" class="hover:text-yellow-300">Services</a>
@@ -25,14 +41,12 @@
       <a href="payment.html" class="hover:text-yellow-300">Payment</a>
       <a href="free-trial.html" class="hover:text-yellow-300 bg-yellow-400 text-blue-800 px-3 py-1 rounded-lg font-semibold">Free Trial</a>
     </nav>
-    <!-- Mobile Menu Button -->
     <button id="mobile-menu-button" class="md:hidden focus:outline-none">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
       </svg>
     </button>
   </div>
-  <!-- Mobile Menu -->
   <div id="mobile-menu" class="hidden md:hidden bg-blue-700">
     <div class="px-2 pt-2 pb-3 space-y-1">
       <a href="index.html" class="block px-3 py-2 text-base font-medium text-white hover:bg-blue-800 rounded">Home</a>
@@ -52,7 +66,7 @@
   <div class="container mx-auto">
     <div class="inline-block bg-yellow-400 text-blue-800 text-sm font-bold px-4 py-1 rounded-full mb-4">FREE TRIAL</div>
     <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">AI Invoice Extractor</h1>
-    <p class="text-lg sm:text-xl text-blue-100 max-w-3xl mx-auto">Upload any invoice image or PDF and our AI instantly extracts all key data — vendor info, line items, totals, and more. Export to Excel in one click.</p>
+    <p class="text-lg sm:text-xl text-blue-100 max-w-3xl mx-auto">Upload any invoice image or PDF and our AI instantly extracts all key data — vendor info, line items, totals, and more. Enter your API key and start extracting!</p>
   </div>
 </section>
 
@@ -60,7 +74,7 @@
 <section class="py-10 sm:py-12 bg-gray-50">
   <div class="container mx-auto px-4 sm:px-6">
     <h2 class="text-2xl sm:text-3xl font-semibold text-center mb-8 text-blue-700">How It Works</h2>
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       <div class="text-center">
         <div class="flex items-center justify-center w-14 h-14 bg-blue-600 rounded-full mx-auto mb-3">
           <span class="text-white text-xl font-bold">1</span>
@@ -72,19 +86,12 @@
         <div class="flex items-center justify-center w-14 h-14 bg-blue-600 rounded-full mx-auto mb-3">
           <span class="text-white text-xl font-bold">2</span>
         </div>
-        <h3 class="font-bold text-gray-800 mb-1">Enter Trial Key</h3>
-        <p class="text-gray-600 text-sm">Use the trial key provided below to authenticate</p>
-      </div>
-      <div class="text-center">
-        <div class="flex items-center justify-center w-14 h-14 bg-blue-600 rounded-full mx-auto mb-3">
-          <span class="text-white text-xl font-bold">3</span>
-        </div>
         <h3 class="font-bold text-gray-800 mb-1">AI Extracts Data</h3>
         <p class="text-gray-600 text-sm">Our AI reads and extracts all invoice information</p>
       </div>
       <div class="text-center">
         <div class="flex items-center justify-center w-14 h-14 bg-blue-600 rounded-full mx-auto mb-3">
-          <span class="text-white text-xl font-bold">4</span>
+          <span class="text-white text-xl font-bold">3</span>
         </div>
         <h3 class="font-bold text-gray-800 mb-1">Download Excel</h3>
         <p class="text-gray-600 text-sm">Export the structured data to a clean Excel file</p>
@@ -93,54 +100,137 @@
   </div>
 </section>
 
-<!-- Trial Key Info -->
-<section class="py-8 container mx-auto px-4 sm:px-6">
-  <div class="max-w-2xl mx-auto bg-yellow-50 border border-yellow-300 rounded-xl p-6 text-center">
-    <div class="flex items-center justify-center mb-3">
-      <i data-feather="key" class="text-yellow-600 w-6 h-6 mr-2"></i>
-      <h3 class="text-lg font-bold text-yellow-800">Your Free Trial Access Key</h3>
-    </div>
-    <p class="text-gray-700 mb-3">Use this key in the invoice extractor to try the service. This key is for trial purposes with limited usage.</p>
-    <div class="bg-white border-2 border-dashed border-yellow-400 rounded-lg px-6 py-3 inline-block">
-      <code id="trial-key" class="text-lg font-mono font-bold text-blue-700 select-all">YOUR_TRIAL_API_KEY_HERE</code>
-    </div>
-    <button onclick="copyKey()" class="ml-3 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 text-sm font-semibold transition duration-300">
-      Copy Key
-    </button>
-    <p class="text-sm text-gray-500 mt-3">Provider: <strong>Groq</strong> | Select "Groq" as the AI provider when using the tool</p>
-  </div>
-</section>
-
-<!-- Embedded Invoice Extractor App -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- INVOICE EXTRACTOR APP  (fully client-side, no backend)     -->
+<!-- ═══════════════════════════════════════════════════════════ -->
 <section class="py-8 sm:py-12 container mx-auto px-4 sm:px-6">
   <h2 class="text-2xl sm:text-3xl font-semibold text-center mb-4 text-blue-700">Try Invoice Extractor Now</h2>
-  <p class="text-center text-gray-600 mb-6 max-w-2xl mx-auto">The tool is loaded below. Upload your invoice and experience AI-powered data extraction.</p>
+  <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">Upload your invoice and experience AI-powered data extraction — runs entirely in your browser.</p>
 
-  <div class="max-w-6xl mx-auto bg-white shadow-xl rounded-xl overflow-hidden border border-gray-200">
-    <!-- ============================================================ -->
-    <!-- IMPORTANT: Replace the src URL below with your deployed       -->
-    <!-- Flask app URL (e.g., https://invoice-extractor.onrender.com) -->
-    <!-- ============================================================ -->
-    <iframe
-      id="invoice-app"
-      src="http://127.0.0.1:5000"
-      class="w-full border-0"
-      style="height: 800px; min-height: 600px;"
-      title="Invoice Extractor Tool"
-      loading="lazy"
-      allow="clipboard-write"
-    ></iframe>
+  <div class="max-w-4xl mx-auto">
 
-    <!-- Fallback if iframe doesn't load -->
-    <div id="iframe-fallback" class="hidden text-center py-16 px-6">
-      <i data-feather="alert-circle" class="w-12 h-12 text-gray-400 mx-auto mb-4"></i>
-      <h3 class="text-xl font-bold text-gray-700 mb-2">Tool is Loading...</h3>
-      <p class="text-gray-500 mb-4">If the tool doesn't load, it may be starting up (takes ~30 seconds on free hosting). Please wait and try again.</p>
-      <button onclick="reloadApp()" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 font-semibold transition duration-300">
-        Reload Tool
-      </button>
-      <p class="text-sm text-gray-400 mt-4">Or access it directly: <a id="direct-link" href="http://127.0.0.1:5000" target="_blank" class="text-blue-600 underline">Open in New Tab</a></p>
+    <!-- STEP 1 — Enter API Key -->
+    <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-6 mb-6">
+      <h3 class="text-lg font-bold text-gray-800 mb-4">&#9312; Enter API Key</h3>
+
+      <!-- Contact info for getting a key -->
+      <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-4">
+        <div class="flex items-start gap-3">
+          <i data-feather="key" class="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5"></i>
+          <div>
+            <div class="font-bold text-blue-800 text-sm mb-1">Need an API Key?</div>
+            <p class="text-sm text-gray-600 mb-2">To use the Invoice Extractor, you need an API key. Contact us to get your <strong>free trial key</strong> or a production key:</p>
+            <a href="mailto:contactus@ezervsolutions.com" class="inline-flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-blue-700 transition">
+              <i data-feather="mail" class="w-4 h-4"></i>
+              contactus@ezervsolutions.com
+            </a>
+            <p class="text-xs text-gray-400 mt-2">We&rsquo;ll send your key within minutes!</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- API Key Input -->
+      <div>
+        <label class="block text-sm font-semibold text-gray-700 mb-2">API Key</label>
+        <div class="flex gap-2">
+          <input type="password" id="apiKey" placeholder="Paste the API key provided by EZERV..." class="flex-1 border border-gray-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 font-mono" autocomplete="off" oninput="autoDetectProvider()" />
+          <button onclick="toggleKeyVisibility()" class="bg-gray-100 border border-gray-300 rounded-lg px-4 text-sm font-semibold text-gray-600 hover:bg-gray-200">Show</button>
+        </div>
+        <div id="detectedProvider" class="hidden mt-2 flex items-center gap-2 text-sm">
+          <span class="inline-block w-2 h-2 bg-green-500 rounded-full"></span>
+          <span class="text-green-700 font-medium" id="detectedProviderName"></span>
+        </div>
+        <p class="text-xs text-gray-400 mt-2">Your key is used directly in the browser and is never stored on any server.</p>
+      </div>
     </div>
+
+    <!-- STEP 2 — Upload -->
+    <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-6 mb-6">
+      <h3 class="text-lg font-bold text-gray-800 mb-4">&#9313; Upload Invoice</h3>
+
+      <!-- Tab Switcher -->
+      <div class="flex gap-2 mb-4">
+        <button id="tab-img" class="flex-1 py-3 text-center rounded-lg border-2 border-blue-500 bg-blue-50 text-blue-700 font-semibold text-sm" onclick="switchTab('img')">&#128444;&#65039; Image Invoice</button>
+        <button id="tab-pdf" class="flex-1 py-3 text-center rounded-lg border-2 border-gray-200 text-gray-500 font-semibold text-sm" onclick="switchTab('pdf')">&#128196; PDF Invoice</button>
+      </div>
+
+      <!-- Image Panel -->
+      <div id="panel-img">
+        <div class="drop-zone border-2 border-dashed border-gray-300 rounded-xl p-10 text-center relative" id="dropImg">
+          <input type="file" id="imgInput" accept="image/jpeg,image/jpg,image/png,image/webp" onchange="handleImg(this)" class="absolute inset-0 opacity-0 cursor-pointer w-full h-full" />
+          <div class="text-4xl mb-3">&#128228;</div>
+          <div class="font-bold text-gray-700 mb-1">Drop image here or click to upload</div>
+          <div class="text-sm text-gray-400">JPG, PNG, WEBP &middot; Max 10 MB</div>
+        </div>
+        <div id="imgPreview" class="hidden mt-3 flex items-center gap-3 bg-gray-50 border rounded-lg p-3">
+          <i data-feather="image" class="text-green-500 w-5 h-5"></i>
+          <span id="imgName" class="text-sm font-mono flex-1 truncate">&mdash;</span>
+          <button onclick="clearImg()" class="text-gray-400 hover:text-red-500 text-xl leading-none">&times;</button>
+        </div>
+      </div>
+
+      <!-- PDF Panel -->
+      <div id="panel-pdf" class="hidden">
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-3 text-sm text-blue-700">
+          &#128196; Upload a PDF invoice — we&rsquo;ll convert each page to an image in your browser, then send it to AI for extraction.
+        </div>
+        <div class="drop-zone border-2 border-dashed border-gray-300 rounded-xl p-10 text-center relative" id="dropPdf">
+          <input type="file" id="pdfInput" accept="application/pdf" onchange="handlePdf(this)" class="absolute inset-0 opacity-0 cursor-pointer w-full h-full" />
+          <div class="text-4xl mb-3">&#128228;</div>
+          <div class="font-bold text-gray-700 mb-1">Drop PDF here or click to upload</div>
+          <div class="text-sm text-gray-400">PDF files only</div>
+        </div>
+        <div id="pdfPreview" class="hidden mt-3 flex items-center gap-3 bg-gray-50 border rounded-lg p-3">
+          <i data-feather="file-text" class="text-blue-500 w-5 h-5"></i>
+          <span id="pdfName" class="text-sm font-mono flex-1 truncate">&mdash;</span>
+          <button onclick="clearPdf()" class="text-gray-400 hover:text-red-500 text-xl leading-none">&times;</button>
+        </div>
+        <div id="pdfConverting" class="hidden mt-3 flex items-center gap-3 bg-gray-50 border rounded-lg p-3 text-sm text-gray-500">
+          <div class="spinner-sm"></div>
+          <span>Converting PDF to images&hellip;</span>
+        </div>
+        <div id="pdfPages" class="hidden mt-3 flex flex-wrap gap-3"></div>
+        <button id="selectAllBtn" class="hidden mt-2 text-sm text-green-600 border border-green-300 rounded-lg px-3 py-1.5 hover:bg-green-50" onclick="toggleSelectAll()">&#10003; Select All Pages</button>
+      </div>
+
+      <!-- Upload Error -->
+      <div id="uploadError" class="hidden mt-3 bg-red-50 border border-red-200 rounded-lg p-3 text-sm text-red-600 flex items-start gap-2">
+        <i data-feather="alert-circle" class="w-4 h-4 flex-shrink-0 mt-0.5"></i>
+        <span id="uploadErrorText"></span>
+      </div>
+    </div>
+
+    <!-- EXTRACT BUTTON -->
+    <button id="extractBtn" onclick="extract()" class="w-full bg-blue-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-blue-700 transition shadow-lg flex items-center justify-center gap-3 mb-6 disabled:opacity-50 disabled:cursor-not-allowed">
+      <span id="extractSpinner" class="hidden"><div class="spinner-sm" style="border-top-color:white"></div></span>
+      <i data-feather="zap" id="extractIcon" class="w-5 h-5"></i>
+      <span id="extractText">Extract Invoice Data</span>
+    </button>
+
+    <!-- Progress -->
+    <div id="progressWrap" class="hidden mb-6">
+      <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-6 space-y-3">
+        <div id="prog1" class="flex items-center gap-3 p-3 rounded-lg bg-gray-50 opacity-40"><span>&#128273;</span><div><div class="font-semibold text-sm">Authenticating</div><div class="text-xs text-gray-400">Connecting to AI provider&hellip;</div></div></div>
+        <div id="prog2" class="flex items-center gap-3 p-3 rounded-lg bg-gray-50 opacity-40"><span>&#128228;</span><div><div class="font-semibold text-sm">Sending Invoice</div><div class="text-xs text-gray-400">Uploading image to AI&hellip;</div></div></div>
+        <div id="prog3" class="flex items-center gap-3 p-3 rounded-lg bg-gray-50 opacity-40"><span>&#129504;</span><div><div class="font-semibold text-sm">AI Analyzing</div><div class="text-xs text-gray-400">Extracting all fields&hellip;</div></div></div>
+        <div id="prog4" class="flex items-center gap-3 p-3 rounded-lg bg-gray-50 opacity-40"><span>&#9989;</span><div><div class="font-semibold text-sm">Processing Results</div><div class="text-xs text-gray-400">Building structured output&hellip;</div></div></div>
+      </div>
+    </div>
+
+    <!-- RESULTS -->
+    <div id="results" class="hidden mb-6">
+      <div class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
+        <div class="flex items-center justify-between p-4 bg-gray-50 border-b">
+          <h3 class="font-bold text-gray-800">&#128203; Extracted Data</h3>
+          <div class="flex gap-2">
+            <button onclick="copyJSON()" class="bg-white border border-gray-300 rounded-lg px-3 py-1.5 text-sm font-semibold text-gray-600 hover:bg-gray-100">&#128203; Copy JSON</button>
+            <button onclick="downloadExcel()" class="bg-green-50 border border-green-300 rounded-lg px-3 py-1.5 text-sm font-semibold text-green-700 hover:bg-green-100">&#128229; Download Excel</button>
+          </div>
+        </div>
+        <div id="resultsContent" class="p-4"></div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -186,44 +276,494 @@
 </section>
 
 <footer class="bg-gray-900 text-gray-400 text-center py-6 mt-10 px-4">
-  <p class="text-sm sm:text-base">© 2025 EZERV Solutions India Pvt Ltd<br class="sm:hidden"> <span class="hidden sm:inline">|</span> contactus@ezervsolutions.com<br class="sm:hidden"> <span class="hidden sm:inline">|</span> +91 8464811000</p>
+  <p class="text-sm sm:text-base">&copy; 2025 EZERV Solutions India Pvt Ltd<br class="sm:hidden"> <span class="hidden sm:inline">|</span> contactus@ezervsolutions.com<br class="sm:hidden"> <span class="hidden sm:inline">|</span> +91 8464811000</p>
 </footer>
+
 <script>
-  feather.replace();
+// ═══════════════════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════════════════
+var extractedData = null;
+var pdfImages = [];
+var selectedPages = new Set();
+var imgFile = null;
+var activeTab = 'img';
 
-  const mobileMenuButton = document.getElementById('mobile-menu-button');
-  const mobileMenu = document.getElementById('mobile-menu');
-  mobileMenuButton.addEventListener('click', () => {
-    mobileMenu.classList.toggle('hidden');
+var INVOICE_PROMPT = 'You are an expert invoice data extraction AI. Analyze this invoice image and extract ALL key attributes.\n\nReturn ONLY a valid JSON object with these fields (use null if not found):\n{\n  "invoice_number": "", "invoice_date": "", "due_date": "",\n  "vendor": {"name": "", "address": "", "email": "", "phone": "", "tax_id": ""},\n  "bill_to": {"name": "", "address": "", "email": "", "phone": ""},\n  "line_items": [{"description": "", "quantity": "", "unit_price": "", "total": ""}],\n  "subtotal": "", "tax_rate": "", "tax_amount": "", "discount": "", "shipping": "",\n  "total_amount": "", "currency": "", "payment_terms": "", "payment_method": "",\n  "bank_details": "", "notes": "", "po_number": ""\n}\nReturn ONLY the JSON, no markdown, no explanation.';
+
+// ═══════════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════════
+feather.replace();
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+document.getElementById('mobile-menu-button').addEventListener('click', function() {
+  document.getElementById('mobile-menu').classList.toggle('hidden');
+});
+
+// Drag & drop
+['dropImg', 'dropPdf'].forEach(function(id) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  el.addEventListener('dragover', function(e) { e.preventDefault(); el.classList.add('dragover'); });
+  el.addEventListener('dragleave', function() { el.classList.remove('dragover'); });
+  el.addEventListener('drop', function(e) {
+    e.preventDefault(); el.classList.remove('dragover');
+    var file = e.dataTransfer.files[0];
+    if (!file) return;
+    if (id === 'dropPdf') handlePdf({ files: [file] });
+    else handleImg({ files: [file] });
   });
+});
 
-  function copyKey() {
-    const key = document.getElementById('trial-key').textContent;
-    navigator.clipboard.writeText(key).then(() => {
-      const btn = event.target;
-      btn.textContent = 'Copied!';
-      setTimeout(() => { btn.textContent = 'Copy Key'; }, 2000);
-    });
+function toggleKeyVisibility() {
+  var inp = document.getElementById('apiKey');
+  inp.type = inp.type === 'password' ? 'text' : 'password';
+}
+
+// ═══════════════════════════════════════════════════════════
+// TAB SWITCHING
+// ═══════════════════════════════════════════════════════════
+function switchTab(tab) {
+  activeTab = tab;
+  document.getElementById('panel-img').classList.toggle('hidden', tab !== 'img');
+  document.getElementById('panel-pdf').classList.toggle('hidden', tab !== 'pdf');
+  document.getElementById('tab-img').className = tab === 'img'
+    ? 'flex-1 py-3 text-center rounded-lg border-2 border-blue-500 bg-blue-50 text-blue-700 font-semibold text-sm'
+    : 'flex-1 py-3 text-center rounded-lg border-2 border-gray-200 text-gray-500 font-semibold text-sm';
+  document.getElementById('tab-pdf').className = tab === 'pdf'
+    ? 'flex-1 py-3 text-center rounded-lg border-2 border-blue-500 bg-blue-50 text-blue-700 font-semibold text-sm'
+    : 'flex-1 py-3 text-center rounded-lg border-2 border-gray-200 text-gray-500 font-semibold text-sm';
+  hideError();
+}
+
+// ═══════════════════════════════════════════════════════════
+// IMAGE HANDLING
+// ═══════════════════════════════════════════════════════════
+function handleImg(input) {
+  var file = input.files ? input.files[0] : null;
+  if (!file) return;
+  imgFile = file;
+  document.getElementById('imgName').textContent = file.name;
+  document.getElementById('imgPreview').classList.remove('hidden');
+  hideError();
+}
+function clearImg() {
+  document.getElementById('imgInput').value = '';
+  document.getElementById('imgPreview').classList.add('hidden');
+  imgFile = null;
+}
+
+// ═══════════════════════════════════════════════════════════
+// PDF HANDLING  (client-side via pdf.js)
+// ═══════════════════════════════════════════════════════════
+function handlePdf(input) {
+  var file = input.files ? input.files[0] : null;
+  if (!file) return;
+  document.getElementById('pdfName').textContent = file.name;
+  document.getElementById('pdfPreview').classList.remove('hidden');
+  hideError();
+  convertPdf(file);
+}
+
+async function convertPdf(file) {
+  var converting = document.getElementById('pdfConverting');
+  converting.classList.remove('hidden');
+  document.getElementById('pdfPages').classList.add('hidden');
+  document.getElementById('selectAllBtn').classList.add('hidden');
+  pdfImages = []; selectedPages.clear();
+  try {
+    var arrayBuf = await file.arrayBuffer();
+    var pdf = await pdfjsLib.getDocument({ data: arrayBuf }).promise;
+    var pages = [];
+    for (var i = 1; i <= pdf.numPages; i++) {
+      var page = await pdf.getPage(i);
+      var viewport = page.getViewport({ scale: 2.0 });
+      var canvas = document.createElement('canvas');
+      canvas.width = viewport.width; canvas.height = viewport.height;
+      var ctx = canvas.getContext('2d');
+      await page.render({ canvasContext: ctx, viewport: viewport }).promise;
+      pages.push({ b64: canvas.toDataURL('image/png').split(',')[1], page: i });
+    }
+    pdfImages = pages;
+    converting.classList.add('hidden');
+    renderPageThumbs();
+  } catch (e) {
+    converting.classList.add('hidden');
+    showError('Failed to convert PDF: ' + e.message);
+  }
+}
+
+function renderPageThumbs() {
+  var wrap = document.getElementById('pdfPages');
+  wrap.innerHTML = '';
+  pdfImages.forEach(function(item) {
+    var div = document.createElement('div');
+    div.className = 'page-thumb border-2 border-gray-200 rounded-lg overflow-hidden relative';
+    div.style.width = '100px';
+    div.dataset.page = item.page;
+    div.innerHTML = '<img src="data:image/png;base64,' + item.b64 + '" class="w-full" />'
+      + '<div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-white text-xs text-center py-0.5">Page ' + item.page + '</div>'
+      + '<div class="page-check absolute top-1 right-1 w-5 h-5 bg-green-500 rounded-full items-center justify-center text-white text-xs hidden">&#10003;</div>';
+    div.onclick = function() { togglePage(div, item.page); };
+    wrap.appendChild(div);
+    if (item.page === 1) togglePage(div, item.page);
+  });
+  wrap.classList.remove('hidden');
+  document.getElementById('selectAllBtn').classList.remove('hidden');
+}
+
+function togglePage(el, page) {
+  if (selectedPages.has(page)) {
+    selectedPages.delete(page);
+    el.classList.remove('selected');
+    el.querySelector('.page-check').classList.add('hidden');
+  } else {
+    selectedPages.add(page);
+    el.classList.add('selected');
+    var chk = el.querySelector('.page-check');
+    chk.classList.remove('hidden'); chk.classList.add('flex');
+  }
+}
+
+function toggleSelectAll() {
+  if (selectedPages.size === pdfImages.length) {
+    selectedPages.clear();
+    document.querySelectorAll('.page-thumb').forEach(function(el) { el.classList.remove('selected'); el.querySelector('.page-check').classList.add('hidden'); });
+  } else {
+    pdfImages.forEach(function(p) { selectedPages.add(p.page); });
+    document.querySelectorAll('.page-thumb').forEach(function(el) { el.classList.add('selected'); var c = el.querySelector('.page-check'); c.classList.remove('hidden'); c.classList.add('flex'); });
+  }
+}
+
+function clearPdf() {
+  document.getElementById('pdfInput').value = '';
+  document.getElementById('pdfPreview').classList.add('hidden');
+  document.getElementById('pdfPages').classList.add('hidden');
+  document.getElementById('selectAllBtn').classList.add('hidden');
+  pdfImages = []; selectedPages.clear();
+}
+
+// ═══════════════════════════════════════════════════════════
+// ERRORS
+// ═══════════════════════════════════════════════════════════
+function showError(msg) {
+  document.getElementById('uploadErrorText').textContent = msg;
+  document.getElementById('uploadError').classList.remove('hidden');
+}
+function hideError() { document.getElementById('uploadError').classList.add('hidden'); }
+
+// ═══════════════════════════════════════════════════════════
+// PROVIDER AUTO-DETECT
+// ═══════════════════════════════════════════════════════════
+function detectProvider(apiKey) {
+  if (apiKey.startsWith('gsk_'))    return 'groq';
+  if (apiKey.startsWith('AIza'))    return 'gemini';
+  if (apiKey.startsWith('nvapi-'))  return 'nvidia';
+  if (apiKey.startsWith('sk-ant-')) return 'anthropic';
+  if (apiKey.startsWith('sk-'))     return 'openai';
+  return 'unknown';
+}
+
+var PROVIDER_LABELS = {
+  groq: 'Groq (Llama 4)', gemini: 'Google Gemini', nvidia: 'NVIDIA',
+  openai: 'OpenAI (GPT-4o)', anthropic: 'Anthropic (Claude)', deepseek: 'DeepSeek',
+  unknown: 'Auto-detecting...'
+};
+
+function autoDetectProvider() {
+  var key = document.getElementById('apiKey').value.trim();
+  var box = document.getElementById('detectedProvider');
+  if (key.length < 4) { box.classList.add('hidden'); return; }
+  var p = detectProvider(key);
+  document.getElementById('detectedProviderName').textContent = 'Detected: ' + (PROVIDER_LABELS[p] || p);
+  box.classList.remove('hidden');
+}
+
+// ═══════════════════════════════════════════════════════════
+// AI API CALLS  (direct from browser)
+// ═══════════════════════════════════════════════════════════
+async function callGeminiAPI(apiKey, imageB64, mimeType) {
+  var url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' + encodeURIComponent(apiKey);
+  var res = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ contents: [{ parts: [
+      { inlineData: { mimeType: mimeType, data: imageB64 } },
+      { text: INVOICE_PROMPT }
+    ]}]})
+  });
+  if (!res.ok) { var e = await res.json().catch(function() { return {}; }); throw new Error((e.error && e.error.message) || 'Gemini API error (' + res.status + ')'); }
+  var data = await res.json();
+  return data.candidates[0].content.parts[0].text;
+}
+
+async function callOpenAICompatible(apiKey, imageB64, mimeType, baseUrl, model, providerName) {
+  var res = await fetch(baseUrl, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + apiKey },
+    body: JSON.stringify({
+      model: model,
+      messages: [{ role: 'user', content: [
+        { type: 'image_url', image_url: { url: 'data:' + mimeType + ';base64,' + imageB64 } },
+        { type: 'text', text: INVOICE_PROMPT }
+      ]}],
+      max_tokens: 2000, temperature: 0.1
+    })
+  });
+  if (!res.ok) { var e = await res.json().catch(function() { return {}; }); throw new Error((e.error && e.error.message) || providerName + ' API error (' + res.status + ')'); }
+  var data = await res.json();
+  return data.choices[0].message.content;
+}
+
+async function callAnthropicAPI(apiKey, imageB64, mimeType) {
+  var res = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'x-api-key': apiKey, 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' },
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: 2000,
+      messages: [{ role: 'user', content: [
+        { type: 'image', source: { type: 'base64', media_type: mimeType, data: imageB64 } },
+        { type: 'text', text: INVOICE_PROMPT }
+      ]}]
+    })
+  });
+  if (!res.ok) { var e = await res.json().catch(function() { return {}; }); throw new Error((e.error && e.error.message) || 'Anthropic API error (' + res.status + ')'); }
+  var data = await res.json();
+  return data.content[0].text;
+}
+
+async function callAI(apiKey, imageB64, mimeType) {
+  var provider = detectProvider(apiKey);
+  switch (provider) {
+    case 'groq':      return await callOpenAICompatible(apiKey, imageB64, mimeType, 'https://api.groq.com/openai/v1/chat/completions', 'meta-llama/llama-4-scout-17b-16e-instruct', 'Groq');
+    case 'gemini':    return await callGeminiAPI(apiKey, imageB64, mimeType);
+    case 'nvidia':    return await callOpenAICompatible(apiKey, imageB64, mimeType, 'https://integrate.api.nvidia.com/v1/chat/completions', 'meta/llama-4-scout-17b-16e-instruct', 'NVIDIA');
+    case 'openai':    return await callOpenAICompatible(apiKey, imageB64, mimeType, 'https://api.openai.com/v1/chat/completions', 'gpt-4o', 'OpenAI');
+    case 'anthropic': return await callAnthropicAPI(apiKey, imageB64, mimeType);
+    default:          return await callOpenAICompatible(apiKey, imageB64, mimeType, 'https://api.groq.com/openai/v1/chat/completions', 'meta-llama/llama-4-scout-17b-16e-instruct', 'Groq');
+  }
+}
+
+function parseAIResponse(text) {
+  text = text.trim().replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/i, '');
+  try { return JSON.parse(text); } catch (e) {}
+  var match = text.match(/\{[\s\S]*\}/);
+  if (match) { try { return JSON.parse(match[0]); } catch (e) {} }
+  throw new Error('Could not parse AI response as JSON. Raw: ' + text.substring(0, 200));
+}
+
+// ═══════════════════════════════════════════════════════════
+// EXTRACT
+// ═══════════════════════════════════════════════════════════
+async function extract() {
+  hideError();
+  var apiKey = document.getElementById('apiKey').value.trim();
+  if (!apiKey) {
+    showError('Please enter your API key. Contact contactus@ezervsolutions.com to get your free trial key.');
+    return;
   }
 
-  function reloadApp() {
-    const iframe = document.getElementById('invoice-app');
-    iframe.src = iframe.src;
-    document.getElementById('iframe-fallback').classList.add('hidden');
-    iframe.classList.remove('hidden');
+  var imageB64 = '', mimeType = 'image/png';
+
+  if (activeTab === 'img') {
+    if (!imgFile) { showError('Please upload an image.'); return; }
+    imageB64 = await fileToBase64(imgFile);
+    mimeType = imgFile.type || 'image/png';
+  } else {
+    if (pdfImages.length === 0) { showError('Please upload and convert a PDF first.'); return; }
+    if (selectedPages.size === 0) { showError('Please select at least one page.'); return; }
+    var target = pdfImages.find(function(p) { return selectedPages.has(p.page); });
+    imageB64 = target.b64;
+    mimeType = 'image/png';
   }
 
-  // Show fallback if iframe fails to load after 15 seconds
-  setTimeout(() => {
-    const iframe = document.getElementById('invoice-app');
-    try {
-      // If iframe src is still a placeholder, show fallback
-      if (false) { // app is running locally
-        iframe.classList.add('hidden');
-        document.getElementById('iframe-fallback').classList.remove('hidden');
-      }
-    } catch(e) {}
-  }, 15000);
+  setLoading(true);
+  document.getElementById('results').classList.add('hidden');
+  document.getElementById('progressWrap').classList.remove('hidden');
+  setProgress(1);
+  await sleep(400);
+  setProgress(2);
+  await sleep(200);
+  setProgress(3);
+
+  try {
+    var rawText = await callAI(apiKey, imageB64, mimeType);
+    setProgress(4);
+    await sleep(300);
+    extractedData = parseAIResponse(rawText);
+    document.getElementById('progressWrap').classList.add('hidden');
+    renderResults(extractedData);
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  } catch (e) {
+    document.getElementById('progressWrap').classList.add('hidden');
+    showError(e.message || 'Something went wrong. Please try again.');
+  } finally {
+    setLoading(false);
+  }
+}
+
+function fileToBase64(file) {
+  return new Promise(function(res, rej) {
+    var r = new FileReader();
+    r.onload = function() { res(r.result.split(',')[1]); };
+    r.onerror = rej;
+    r.readAsDataURL(file);
+  });
+}
+
+function sleep(ms) { return new Promise(function(r) { setTimeout(r, ms); }); }
+
+function setLoading(on) {
+  document.getElementById('extractBtn').disabled = on;
+  document.getElementById('extractSpinner').classList.toggle('hidden', !on);
+  document.getElementById('extractIcon').classList.toggle('hidden', on);
+  document.getElementById('extractText').textContent = on ? 'Analyzing invoice with AI...' : 'Extract Invoice Data';
+}
+
+function setProgress(step) {
+  for (var i = 1; i <= 4; i++) {
+    var el = document.getElementById('prog' + i);
+    el.style.opacity = i <= step ? '1' : '0.4';
+    el.style.background = i < step ? '#f0fdf4' : i === step ? '#eff6ff' : '#f9fafb';
+    el.style.borderLeft = i <= step ? '3px solid ' + (i < step ? '#10b981' : '#3b82f6') : '3px solid transparent';
+  }
+}
+
+// ═══════════════════════════════════════════════════════════
+// RENDER RESULTS
+// ═══════════════════════════════════════════════════════════
+function val(v) {
+  if (v === null || v === undefined || v === '') return '<span class="text-gray-300">&mdash;</span>';
+  return String(v).replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+function renderResults(data) {
+  var el = document.getElementById('resultsContent');
+  el.innerHTML = '';
+
+  el.innerHTML += makeSection('&#128203; Invoice Overview', [
+    ['Invoice Number', data.invoice_number], ['Invoice Date', data.invoice_date],
+    ['Due Date', data.due_date], ['PO Number', data.po_number],
+    ['Currency', data.currency], ['Payment Terms', data.payment_terms],
+    ['Payment Method', data.payment_method]
+  ]);
+
+  var v = data.vendor || {};
+  el.innerHTML += makeSection('&#127970; Vendor Details', [
+    ['Name', v.name], ['Address', v.address], ['Email', v.email],
+    ['Phone', v.phone], ['Tax ID', v.tax_id]
+  ]);
+
+  var b = data.bill_to || {};
+  el.innerHTML += makeSection('&#128236; Billed To', [
+    ['Name', b.name], ['Address', b.address], ['Email', b.email], ['Phone', b.phone]
+  ]);
+
+  var items = data.line_items || [];
+  if (items.length > 0) {
+    el.innerHTML += '<div class="mb-4">'
+      + '<div class="font-bold text-gray-800 mb-2 text-sm">&#128230; Line Items</div>'
+      + '<div class="overflow-x-auto"><table class="w-full text-sm border border-gray-200 rounded-lg overflow-hidden">'
+      + '<thead class="bg-gray-50"><tr>'
+      + '<th class="px-3 py-2 text-left text-gray-500 font-medium">#</th>'
+      + '<th class="px-3 py-2 text-left text-gray-500 font-medium">Description</th>'
+      + '<th class="px-3 py-2 text-right text-gray-500 font-medium">Qty</th>'
+      + '<th class="px-3 py-2 text-right text-gray-500 font-medium">Unit Price</th>'
+      + '<th class="px-3 py-2 text-right text-gray-500 font-medium">Total</th>'
+      + '</tr></thead><tbody>'
+      + items.map(function(item, i) {
+          return '<tr class="' + (i % 2 === 0 ? 'bg-white' : 'bg-gray-50') + '">'
+            + '<td class="px-3 py-2 text-gray-400">' + (i+1) + '</td>'
+            + '<td class="px-3 py-2">' + val(item.description) + '</td>'
+            + '<td class="px-3 py-2 text-right font-mono">' + val(item.quantity) + '</td>'
+            + '<td class="px-3 py-2 text-right font-mono">' + val(item.unit_price) + '</td>'
+            + '<td class="px-3 py-2 text-right font-mono font-semibold text-blue-700">' + val(item.total) + '</td>'
+            + '</tr>';
+        }).join('')
+      + '</tbody></table></div></div>';
+  }
+
+  el.innerHTML += makeSection('&#128176; Totals & Payment', [
+    ['Subtotal', data.subtotal], ['Tax Rate', data.tax_rate],
+    ['Tax Amount', data.tax_amount], ['Discount', data.discount],
+    ['Shipping', data.shipping], ['Bank Details', data.bank_details],
+    ['Notes', data.notes]
+  ]);
+
+  el.innerHTML += '<div class="bg-yellow-50 border border-yellow-300 rounded-lg p-4 flex justify-between items-center">'
+    + '<span class="font-bold text-yellow-800">TOTAL AMOUNT</span>'
+    + '<span class="text-2xl font-bold text-blue-700">' + val(data.total_amount) + '</span>'
+    + '</div>';
+}
+
+function makeSection(title, fields) {
+  return '<div class="mb-4">'
+    + '<div class="font-bold text-gray-800 mb-2 text-sm">' + title + '</div>'
+    + '<div class="bg-gray-50 rounded-lg border border-gray-200 overflow-hidden">'
+    + fields.map(function(f) { return '<div class="result-field"><span class="label">' + f[0] + '</span><span class="value">' + val(f[1]) + '</span></div>'; }).join('')
+    + '</div></div>';
+}
+
+// ═══════════════════════════════════════════════════════════
+// COPY JSON
+// ═══════════════════════════════════════════════════════════
+function copyJSON() {
+  if (!extractedData) return;
+  navigator.clipboard.writeText(JSON.stringify(extractedData, null, 2)).then(function() { alert('JSON copied to clipboard!'); });
+}
+
+// ═══════════════════════════════════════════════════════════
+// DOWNLOAD EXCEL  (client-side via SheetJS)
+// ═══════════════════════════════════════════════════════════
+function downloadExcel() {
+  if (!extractedData) return;
+  var d = extractedData;
+  var wb = XLSX.utils.book_new();
+
+  var summaryData = [
+    ['INVOICE EXTRACTION REPORT',''],['',''],
+    ['INVOICE DETAILS',''],
+    ['Invoice Number', d.invoice_number || ''],['Invoice Date', d.invoice_date || ''],
+    ['Due Date', d.due_date || ''],['PO Number', d.po_number || ''],
+    ['Currency', d.currency || ''],['Payment Terms', d.payment_terms || ''],
+    ['',''],['VENDOR',''],
+    ['Name', (d.vendor||{}).name || ''],['Address', (d.vendor||{}).address || ''],
+    ['Email', (d.vendor||{}).email || ''],['Phone', (d.vendor||{}).phone || ''],
+    ['Tax ID', (d.vendor||{}).tax_id || ''],
+    ['',''],['BILLED TO',''],
+    ['Name', (d.bill_to||{}).name || ''],['Address', (d.bill_to||{}).address || ''],
+    ['Email', (d.bill_to||{}).email || ''],['Phone', (d.bill_to||{}).phone || ''],
+    ['',''],['FINANCIALS',''],
+    ['Subtotal', d.subtotal || ''],['Tax Rate', d.tax_rate || ''],
+    ['Tax Amount', d.tax_amount || ''],['Discount', d.discount || ''],
+    ['Shipping', d.shipping || ''],['Payment Method', d.payment_method || ''],
+    ['Bank Details', d.bank_details || ''],['Notes', d.notes || ''],
+    ['',''],['TOTAL AMOUNT', d.total_amount || '']
+  ];
+  var ws1 = XLSX.utils.aoa_to_sheet(summaryData);
+  ws1['!cols'] = [{ wch: 20 }, { wch: 45 }];
+  XLSX.utils.book_append_sheet(wb, ws1, 'Invoice Summary');
+
+  var items = d.line_items || [];
+  var itemsData = [['#','Description','Quantity','Unit Price','Total']];
+  items.forEach(function(item, i) {
+    itemsData.push([i+1, item.description||'', item.quantity||'', item.unit_price||'', item.total||'']);
+  });
+  itemsData.push([]);
+  itemsData.push(['','','','Subtotal', d.subtotal || '']);
+  itemsData.push(['','','','Tax', d.tax_amount || '']);
+  itemsData.push(['','','','Discount', d.discount || '']);
+  itemsData.push(['','','','TOTAL', d.total_amount || '']);
+  var ws2 = XLSX.utils.aoa_to_sheet(itemsData);
+  ws2['!cols'] = [{ wch: 5 },{ wch: 40 },{ wch: 10 },{ wch: 12 },{ wch: 12 }];
+  XLSX.utils.book_append_sheet(wb, ws2, 'Line Items');
+
+  var filename = 'invoice_' + (d.invoice_number || 'export').replace(/[^a-zA-Z0-9]/g, '_') + '.xlsx';
+  XLSX.writeFile(wb, filename);
+}
 </script>
 </body>
 </html>
