@@ -8,45 +8,7 @@
   <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
 </head>
 <body class="font-sans text-gray-800">
-<header class="bg-blue-600 text-white shadow">
-  <div class="container mx-auto flex justify-between items-center px-4 sm:px-6 py-4">
-    <div class="flex items-center space-x-2">
-      <img src="assets/logo.png" alt="Logo" class="h-10 w-10 sm:h-12 sm:w-12 rounded-full">
-      <a href="index.html" class="text-lg sm:text-xl font-semibold">EZERV Solutions</a>
-    </div>
-    <!-- Desktop Navigation -->
-    <nav class="hidden md:flex space-x-6">
-      <a href="index.html" class="hover:text-yellow-300">Home</a>
-      <a href="services.html" class="hover:text-yellow-300">Services</a>
-      <a href="projects.html" class="hover:text-yellow-300">Projects</a>
-      <a href="about.html" class="hover:text-yellow-300">About</a>
-      <a href="blogs.html" class="hover:text-yellow-300">Blog</a>
-      <a href="contact.html" class="hover:text-yellow-300">Contact</a>
-      <a href="payment.html" class="hover:text-yellow-300">Payment</a>
-      <a href="free-trial.html" class="hover:text-yellow-300 bg-yellow-400 text-blue-800 px-3 py-1 rounded-lg font-semibold">Free Trial</a>
-    </nav>
-    <!-- Mobile Menu Button -->
-    <button id="mobile-menu-button" class="md:hidden focus:outline-none">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-      </svg>
-    </button>
-  </div>
-  <!-- Mobile Menu -->
-  <div id="mobile-menu" class="hidden md:hidden bg-blue-700">
-    <div class="px-2 pt-2 pb-3 space-y-1">
-      <a href="index.html" class="block px-3 py-2 text-base font-medium text-white hover:bg-blue-800 rounded">Home</a>
-      <a href="services.html" class="block px-3 py-2 text-base font-medium text-white hover:bg-blue-800 rounded">Services</a>
-      <a href="projects.html" class="block px-3 py-2 text-base font-medium text-white hover:bg-blue-800 rounded">Projects</a>
-      <a href="about.html" class="block px-3 py-2 text-base font-medium text-white hover:bg-blue-800 rounded">About</a>
-      <a href="blogs.html" class="block px-3 py-2 text-base font-medium text-white hover:bg-blue-800 rounded">Blog</a>
-      <a href="contact.html" class="block px-3 py-2 text-base font-medium text-white hover:bg-blue-800 rounded">Contact</a>
-      <a href="payment.html" class="block px-3 py-2 text-base font-medium text-white hover:bg-blue-800 rounded">Payment</a>
-      <a href="free-trial.html" class="block px-3 py-2 text-base font-medium text-yellow-300 hover:bg-blue-800 rounded font-semibold">Free Trial</a>
-    </div>
-  </div>
-</header>
-
+<div id="site-header"></div>
 <!-- Hero Section -->
 <section class="bg-gradient-to-r from-blue-600 to-blue-800 py-12 sm:py-16 text-center px-4">
   <div class="container mx-auto">
@@ -237,18 +199,8 @@
   </div>
 </section>
 
-<footer class="bg-gray-900 text-gray-400 text-center py-6 mt-10 px-4">
-  <p class="text-sm sm:text-base">© 2025 EZERV Solutions India Pvt Ltd<br class="sm:hidden"> <span class="hidden sm:inline">|</span> contactus@ezervsolutions.com<br class="sm:hidden"> <span class="hidden sm:inline">|</span> +91 8464811000</p>
-</footer>
-<script>
-  feather.replace();
-  // Mobile menu toggle
-  const mobileMenuButton = document.getElementById('mobile-menu-button');
-  const mobileMenu = document.getElementById('mobile-menu');
-  
-  mobileMenuButton.addEventListener('click', () => {
-    mobileMenu.classList.toggle('hidden');
-  });
-</script>
+<div id="site-footer"></div>
+<script src="scripts/common.js"></script>
 </body>
 </html>
+
